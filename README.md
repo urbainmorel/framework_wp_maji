@@ -44,8 +44,9 @@ npm run lint:js        # ESLint @wordpress
 
 **Pour l'intégrateur MAJI :**
 
+- [Installation & environnement](docs/INSTALLATION.md) — monter WordPress + MAJI (wp-env/Docker, XAMPP/Local, VPS LEMP, mutualisé cPanel/N0C) puis produire un site
 - [Guide de création d'un site](docs/GUIDE-CREATION-SITE.md) — **pas à pas pour débutant** : de la fiche d'identité à la livraison, sans supposer de connaissances techniques (terminal, JSON, exemple complet, glossaire)
-- [Installation](docs/INSTALLATION.md) — installation automatisée/manuelle d'un site client
+- [Prompts IA](docs/prompts/) — accélérer la production : générer les JSON depuis un brief client, classer/renommer les médias, ou **tout automatiser via un agent** ([voir l'index](docs/prompts/README.md))
 - [Exploitation](docs/OPERATIONS.md) — registre anti-clones, branchement n8n, mises à jour de flotte
 - [Catalogue des sections](docs/SECTIONS.md) — les 28 patterns, leurs compositions, jetons et médias
 
