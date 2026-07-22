@@ -10,7 +10,7 @@ declare(strict_types=1);
 $maji_uid = wp_unique_id( 'maji-table-' );
 ?>
 <div <?php echo get_block_wrapper_attributes( [ 'class' => 'maji-form maji-table-booking-form' ] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- échappé par WordPress. ?>>
-	<form class="maji-form__inner" data-maji-form="table" novalidate>
+	<form class="maji-form__inner" data-maji-form="table" data-maji-endpoint="<?php echo esc_url( rest_url( 'maji/v1/reservations' ) ); ?>" novalidate>
 		<p class="maji-form__row maji-form__row--website" aria-hidden="true">
 			<label for="<?php echo esc_attr( $maji_uid ); ?>-website"><?php esc_html_e( 'Ne pas remplir ce champ', 'maji-core' ); ?></label>
 			<input type="text" id="<?php echo esc_attr( $maji_uid ); ?>-website" name="website" tabindex="-1" autocomplete="off">

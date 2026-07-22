@@ -157,24 +157,30 @@ final class ContentImporter {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 
-		// Réutilise une pièce jointe déjà importée du même nom (idempotence).
-		$existing = get_posts(
+		// Réutilise une pièce jointe déjà importée (idempotence) via un marqueur
+		// stable indépendant du titre WordPress (qui perd l'extension).
+		$source_key = sanitize_file_name( basename( $path ) );
+		$existing   = get_posts(
 			[
 				'post_type'      => 'attachment',
 				'posts_per_page' => 1,
-				'title'          => sanitize_file_name( basename( $path ) ),
+				'post_status'    => 'inherit',
 				'fields'         => 'ids',
+				'meta_key'       => '_maji_media_source', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- provision ponctuelle.
+				'meta_value'     => $source_key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- provision ponctuelle.
 			]
 		);
 		if ( isset( $existing[0] ) ) {
-			return (int) $existing[0];
+			$attachment_id = (int) $existing[0];
+			update_post_meta( $attachment_id, '_wp_attachment_image_alt', $alt );
+			return $attachment_id;
 		}
 
 		$tmp = wp_tempnam( basename( $path ) );
 		copy( $path, $tmp ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_copy -- copie locale temporaire.
 
 		$file_array = [
-			'name'     => sanitize_file_name( basename( $path ) ),
+			'name'     => $source_key,
 			'tmp_name' => $tmp,
 		];
 
@@ -183,8 +189,10 @@ final class ContentImporter {
 			@unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.unlink_unlink -- nettoyage temporaire.
 			return 0;
 		}
-		update_post_meta( (int) $attachment_id, '_wp_attachment_image_alt', $alt );
-		return (int) $attachment_id;
+		$attachment_id = (int) $attachment_id;
+		update_post_meta( $attachment_id, '_wp_attachment_image_alt', $alt );
+		update_post_meta( $attachment_id, '_maji_media_source', $source_key );
+		return $attachment_id;
 	}
 
 	/**

@@ -34,8 +34,11 @@
 		button.disabled = true;
 		feedback.hidden = true;
 
+		const endpoint =
+			form.dataset.majiEndpoint || '/wp-json/maji/v1/reservations';
+
 		window
-			.fetch( '/wp-json/maji/v1/reservations', {
+			.fetch( endpoint, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify( payload ),

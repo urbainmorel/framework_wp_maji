@@ -17,6 +17,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 delete_option( 'maji_settings' );
 delete_option( 'maji_webhook_secret' );
 delete_option( 'maji_dna' );
+delete_option( 'maji_db_version' );
 
 $maji_role = get_role( 'administrator' );
 if ( null !== $maji_role ) {

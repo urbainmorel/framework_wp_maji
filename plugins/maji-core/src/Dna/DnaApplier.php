@@ -259,20 +259,35 @@ final class DnaApplier {
 		}
 
 		$theme = get_stylesheet();
-		foreach ( [ 'front-page', 'page', 'single', 'archive', 'index' ] as $template_slug ) {
-			$template = get_block_template( $theme . '//' . $template_slug );
-			if ( null === $template || '' === (string) $template->content ) {
+
+		// Parcourt TOUS les templates du thème (fichiers + base) et surcharge
+		// ceux qui référencent le header/footer par défaut, pour une cohérence
+		// visuelle complète (accueil, pages, panier, checkout, 404, chambres…).
+		$templates = function_exists( 'get_block_templates' )
+			? get_block_templates( [], 'wp_template' )
+			: [];
+
+		foreach ( $templates as $template ) {
+			// Ne traite que les templates du thème actif.
+			if ( $theme !== $template->theme ) {
 				continue;
 			}
-			$content = (string) $template->content;
-			$content = str_replace( '"slug":"header-02"', '"slug":"' . $header . '"', $content );
-			$content = str_replace( '"slug":"footer-01"', '"slug":"' . $footer . '"', $content );
-
-			if ( $content === (string) $template->content ) {
+			$template_slug = $template->slug;
+			$source        = $template->content;
+			if ( '' === $template_slug || '' === $source ) {
 				continue;
 			}
 
-			// Crée/met à jour le template personnalisé en base.
+			$content = str_replace(
+				[ '"slug":"header-02"', '"slug":"footer-01"' ],
+				[ '"slug":"' . $header . '"', '"slug":"' . $footer . '"' ],
+				$source
+			);
+			if ( $content === $source ) {
+				continue; // Ce template n'utilise pas les valeurs par défaut.
+			}
+
+			// Crée/met à jour le template personnalisé en base (sans toucher aux fichiers).
 			$existing = get_posts(
 				[
 					'post_type'      => 'wp_template',

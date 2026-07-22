@@ -52,28 +52,77 @@ function maji_framework_get_font_pair( string $pair_id ): ?array {
 }
 
 /**
+ * Familles typographiques déclarées, toutes origines confondues (thème + ADN).
+ *
+ * @return array<int, array<string, mixed>> Familles.
+ */
+function maji_framework_all_font_families(): array {
+	$raw = wp_get_global_settings( [ 'typography', 'fontFamilies' ] );
+	if ( ! is_array( $raw ) ) {
+		return [];
+	}
+	// La valeur peut être une liste plate ou séparée par origine (theme/custom/default).
+	if ( array_is_list( $raw ) ) {
+		return $raw;
+	}
+	$families = [];
+	foreach ( [ 'theme', 'custom', 'default' ] as $origin ) {
+		if ( isset( $raw[ $origin ] ) && is_array( $raw[ $origin ] ) ) {
+			$families = array_merge( $families, $raw[ $origin ] );
+		}
+	}
+	return $families;
+}
+
+/**
+ * Slug de la police de titres réellement active (depuis les global styles).
+ *
+ * Après application d'un ADN, la paire typo choisie fixe la famille des titres :
+ * on la lit ici pour précharger la bonne police, pas une police par défaut.
+ */
+function maji_framework_active_heading_slug(): string {
+	$value = wp_get_global_styles( [ 'elements', 'heading', 'typography', 'fontFamily' ] );
+	if ( is_string( $value ) && 1 === preg_match( '/font-family--([a-z0-9-]+)/', $value, $m ) ) {
+		return $m[1];
+	}
+	return 'fraunces'; // Police de titres par défaut du thème.
+}
+
+/**
  * Précharge le premier fichier WOFF2 de la police de titres active.
  */
 function maji_framework_preload_heading_font(): void {
-	$settings = wp_get_global_settings( [ 'typography', 'fontFamilies' ] );
-	if ( ! is_array( $settings ) ) {
+	$slug     = maji_framework_active_heading_slug();
+	$families = maji_framework_all_font_families();
+
+	$target = null;
+	foreach ( $families as $family ) {
+		if ( isset( $family['slug'] ) && $family['slug'] === $slug && ! empty( $family['fontFace'][0]['src'][0] ) ) {
+			$target = $family;
+			break;
+		}
+	}
+	// Repli : première famille disposant d'un fichier.
+	if ( null === $target ) {
+		foreach ( $families as $family ) {
+			if ( ! empty( $family['fontFace'][0]['src'][0] ) ) {
+				$target = $family;
+				break;
+			}
+		}
+	}
+	if ( null === $target ) {
 		return;
 	}
-	$families = $settings['theme'] ?? [];
-	foreach ( $families as $family ) {
-		if ( empty( $family['fontFace'][0]['src'][0] ) ) {
-			continue;
-		}
-		$src = $family['fontFace'][0]['src'][0];
-		if ( ! is_string( $src ) ) {
-			continue;
-		}
-		$url = str_replace( 'file:./', trailingslashit( get_template_directory_uri() ), $src );
-		printf(
-			'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
-			esc_url( $url )
-		);
-		break;
+
+	$src = $target['fontFace'][0]['src'][0];
+	if ( ! is_string( $src ) ) {
+		return;
 	}
+	$url = str_replace( 'file:./', trailingslashit( get_template_directory_uri() ), $src );
+	printf(
+		'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+		esc_url( $url )
+	);
 }
 add_action( 'wp_head', 'maji_framework_preload_heading_font', 2 );

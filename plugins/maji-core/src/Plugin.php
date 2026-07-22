@@ -83,6 +83,8 @@ final class Plugin {
 	public function init(): void {
 		load_plugin_textdomain( 'maji-core', false, dirname( plugin_basename( MAJI_CORE_FILE ) ) . '/languages' );
 
+		$this->maybe_upgrade();
+
 		$this->settings     = new Settings\Settings();
 		$this->mode_manager = new Modes\ModeManager( $this->settings );
 
@@ -142,6 +144,26 @@ final class Plugin {
 	}
 
 	/**
+	 * Version du schéma de base (à incrémenter à chaque évolution de table).
+	 */
+	private const DB_VERSION = '1';
+
+	/**
+	 * Applique les évolutions de schéma après une mise à jour de flotte.
+	 *
+	 * L'activation ne se rejoue pas lors d'une mise à jour via
+	 * plugin-update-checker : ce garde-fou versionné exécute dbDelta
+	 * (idempotent) une seule fois après chaque changement de schéma.
+	 */
+	private function maybe_upgrade(): void {
+		if ( (string) get_option( 'maji_db_version', '' ) === self::DB_VERSION ) {
+			return;
+		}
+		Webhooks\Log::install();
+		update_option( 'maji_db_version', self::DB_VERSION, false );
+	}
+
+	/**
 	 * Activation : capacité admin + tables.
 	 */
 	public static function activate(): void {
@@ -150,6 +172,7 @@ final class Plugin {
 			$role->add_cap( 'manage_maji' );
 		}
 		Webhooks\Log::install();
+		update_option( 'maji_db_version', self::DB_VERSION, false );
 		flush_rewrite_rules();
 	}
 
