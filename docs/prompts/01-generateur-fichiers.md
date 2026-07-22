@@ -44,6 +44,7 @@ STRUCTURE DE dna.json (schéma "maji-dna/1")
     "da": "<une des 3 DA>", "font_pair": "<fp-01..fp-06>",
     "palette": { "primary": "#RRGGBB", "accent": "#RRGGBB" },
     "radius_scale": "sm|md|lg", "spacing_mood": "compact|normal|aere",
+    "section_bg_rhythm": "uni|alterne|bandes|contraste", "section_style": "auto|net|ombre|minimal",
     "image_treatment": { "hero_ratio": "16:9|4:3|21:9|3:2", "card_ratio": "4:3|1:1|3:4|16:9", "overlay": "none|primary|dark", "duotone": false }
   },
   "structure": {
@@ -68,6 +69,16 @@ VALEURS AUTORISÉES
 - design.font_pair : fp-01 (élégant contemporain), fp-02 (classique chic),
   fp-03 (géométrique moderne), fp-04 (raffiné artisanal), fp-05 (chaleureux lisible),
   fp-06 (technique affirmé).
+- design.section_bg_rhythm : alternance des fonds de sections neutres.
+  • uni → tous les fonds identiques (calme, haut de gamme sobre)
+  • alterne → base / surface (respiration douce, valeur par défaut recommandée)
+  • bandes → base / surface alternative (bandes plus marquées)
+  • contraste → surface / surface alternative (rythme soutenu, jamais monotone)
+- design.section_style : traitement du conteneur des sections.
+  • auto → laisse la DA décider (par défaut)
+  • net → filet fin de séparation entre sections (précis, éditorial)
+  • ombre → légère ombre portée (relief, chaleureux)
+  • minimal → aucun séparateur (épuré, aérien)
 - structure.header : 01 transparent, 02 solide, 03 logo centré, 04 split.
 - structure.footer : 01 complet, 02 minimal, 03 éditorial.
 - nav_vocabulary : pour hôtel → hotel-classique | hotel-experientiel ;

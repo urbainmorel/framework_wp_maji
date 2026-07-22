@@ -114,8 +114,11 @@ final class DnaApplier {
 	public function apply_structure( array $dna ): array {
 		$errors    = [];
 		$structure = is_array( $dna['structure'] ?? null ) ? $dna['structure'] : [];
+		$design    = is_array( $dna['design'] ?? null ) ? $dna['design'] : [];
 		$pages     = is_array( $structure['pages'] ?? null ) ? $structure['pages'] : [];
 		$vocab     = (string) ( $structure['nav_vocabulary'] ?? '' );
+		$rhythm    = (string) ( $design['section_bg_rhythm'] ?? '' );
+		$style     = (string) ( $design['section_style'] ?? '' );
 
 		$token_data = [
 			'identity' => is_array( $dna['identity'] ?? null ) ? $dna['identity'] : [],
@@ -134,7 +137,7 @@ final class DnaApplier {
 			$title    = (string) ( $page_def['title'] ?? '' );
 			$sections = is_array( $page_def['sections'] ?? null ) ? $page_def['sections'] : [];
 
-			$content = '';
+			$section_defs = [];
 			foreach ( $sections as $pattern_slug ) {
 				$pattern_slug = (string) $pattern_slug;
 				$pattern      = $registry->get_registered( $pattern_slug );
@@ -142,8 +145,15 @@ final class DnaApplier {
 					$errors[] = sprintf( 'Pattern introuvable : %s (page %s).', $pattern_slug, $slug );
 					continue;
 				}
-				$content .= "\n" . (string) $pattern['content'];
+				$section_defs[] = [
+					'slug'    => $pattern_slug,
+					'content' => (string) $pattern['content'],
+				];
 			}
+
+			// Leviers de diversité par section (rythme de fonds + style).
+			$styled  = SectionStyler::apply( $section_defs, $rhythm, $style );
+			$content = "\n" . implode( "\n", $styled );
 
 			$content = Tokens::resolve( $content, $token_data );
 

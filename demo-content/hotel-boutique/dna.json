@@ -54,6 +54,8 @@
 		},
 		"radius_scale": "md",
 		"spacing_mood": "normal",
+		"section_bg_rhythm": "contraste",
+		"section_style": "minimal",
 		"image_treatment": {
 			"hero_ratio": "4:3",
 			"card_ratio": "3:4",

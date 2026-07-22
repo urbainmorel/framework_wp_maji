@@ -58,6 +58,8 @@
 		},
 		"radius_scale": "sm",
 		"spacing_mood": "aere",
+		"section_bg_rhythm": "alterne",
+		"section_style": "net",
 		"image_treatment": {
 			"hero_ratio": "16:9",
 			"card_ratio": "4:3",

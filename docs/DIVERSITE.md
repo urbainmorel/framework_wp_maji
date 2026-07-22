@@ -158,11 +158,13 @@ diversité *perçue* effective se compte en **dizaines de milliers** de rendus.
 
 ## 7. Jalons V2 proposés (ordre)
 
-1. **V2-A — Empreinte enrichie (L5).** Nouveaux axes + poids + tests (cas limite
-   0,70, non-régression V1). Petit changement, gros gain de diversité mesurée, sans
-   nouveau design. *Prérequis des suivants.*
-2. **V2-B — Champs d'ADN `section_bg_rhythm` / `section_style` (L3/L5).** Application
-   via global styles + block styles ; schéma + validateur + exemples.
+1. **V2-A — Empreinte enrichie (L5). ✅ Livré.** Nouveaux axes + poids + tests (cas
+   limite 0,70, non-régression V1). Petit changement, gros gain de diversité mesurée,
+   sans nouveau design. *Prérequis des suivants.*
+2. **V2-B — Champs d'ADN `section_bg_rhythm` / `section_style` (L3/L5). ✅ Livré.**
+   Appliqués à l'import via `SectionStyler` (contenu en base) + block styles du plugin
+   (tokens only) ; schéma + validateur + 6 ADN enrichis. Rythme de fonds cantonné aux
+   neutres validés WCAG ; heros et sections à fond intentionnel préservés.
 3. **V2-C — +7 DA (L1).** 3 → 10, chacune validée deux secteurs.
 4. **V2-D — +4 heros/secteur et +24 sections (L2/L3).** 6 → 10 heros, 16 → 40 sections.
 5. **V2-E — +6 paires typo (L4).** 6 → 12.

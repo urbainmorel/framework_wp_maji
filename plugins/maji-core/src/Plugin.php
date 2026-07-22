@@ -96,6 +96,7 @@ final class Plugin {
 			new Rest\ReservationController(),
 			new Rest\PublicSettingsController( $this->settings ),
 			new Blocks\Blocks(),
+			new Blocks\SectionStyles(),
 			$dispatcher,
 			new Webhooks\LogPage( $dispatcher ),
 			new Seo\Seo( $this->settings, $this->mode_manager ),

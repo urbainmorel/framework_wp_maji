@@ -59,3 +59,23 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
 - **Déclencheur calé sur la branche par défaut du dépôt** (`if: github.ref ==
   refs/heads/<default>`) plutôt qu'un nom de branche en dur : robuste à un futur
   passage `main`, sans édition du workflow.
+
+## V2-B — Application des leviers `section_bg_rhythm` / `section_style`
+
+- **Application à l'import, dans le contenu en base** (classe pure `SectionStyler`
+  appelée par `DnaApplier`) plutôt que par réécriture des patterns ou du thème :
+  respecte le contrat §5.2 (personnalisation en base, jamais dans les fichiers du
+  thème) et reste déterministe + testable sans WordPress (10 tests unitaires).
+- **Rythme de fonds via la palette existante, sans CSS sur mesure** : les sections
+  *neutres* (fond `base`) alternent parmi `base`/`surface`/`surface-alt`, tous des
+  neutres clairs déjà contrôlés WCAG contre `ink` par le validateur. Les sections à
+  fond intentionnel (CTA `accent`, heros en image) et les heros ne sont jamais
+  recolorés et ne décalent pas la parité. Aucun risque de contraste, aucune règle CSS
+  de rythme à maintenir.
+- **`section_style` via block styles du plugin** (`core/group` : `maji-net`,
+  `maji-ombre`, `maji-minimal`), CSS 100 % tokens (`--wp--custom--maji--shadow--card`,
+  `--wp--preset--color--surface-alt`). `SectionStyler` pose la classe `is-style-maji-*`
+  sur les sections hors heros ; `auto` = aucune surcharge. Le CSS fin (séparateurs)
+  reste à valider visuellement en wp-env — le mécanisme, lui, est neutre et sûr.
+- **6 ADN d'exemple/modèles enrichis** des deux champs (valeurs variées) : nourrit
+  aussi l'empreinte anti-clones V2-A (max de similarité par paire : 0,39).
