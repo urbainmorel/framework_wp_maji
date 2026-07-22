@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/menu-categories",
+	"version": "1.0.0",
+	"title": "Menu — par catégories",
+	"category": "maji",
+	"icon": "category",
+	"description": "Menu complet regroupé par catégories (entrées, plats, desserts, boissons…).",
+	"keywords": [ "menu", "catégories", "restaurant" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"perCategory": {
+			"type": "integer",
+			"default": 12
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

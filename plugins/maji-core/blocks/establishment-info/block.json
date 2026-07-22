@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/establishment-info",
+	"version": "1.0.0",
+	"title": "Informations établissement",
+	"category": "maji",
+	"icon": "location",
+	"description": "Coordonnées, adresse ou réseaux sociaux depuis les réglages Établissement — jamais de double saisie.",
+	"keywords": [ "adresse", "téléphone", "réseaux" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "coordonnees"
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		},
+		"color": {
+			"text": true
+		},
+		"typography": {
+			"fontSize": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

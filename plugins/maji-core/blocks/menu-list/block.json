@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/menu-list",
+	"version": "1.0.0",
+	"title": "Menu — liste typographique",
+	"category": "maji",
+	"icon": "editor-ul",
+	"description": "Plats en liste élégante sans photos : nom, description, pointillés, prix.",
+	"keywords": [ "menu", "carte", "restaurant" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"count": {
+			"type": "integer",
+			"default": 12
+		},
+		"category": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

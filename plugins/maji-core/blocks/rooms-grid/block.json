@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/rooms-grid",
+	"version": "1.0.0",
+	"title": "Grille de chambres",
+	"category": "maji",
+	"icon": "grid-view",
+	"description": "Affiche les chambres avec photo, prix « à partir de » en FCFA et capacité.",
+	"keywords": [ "chambres", "hôtel" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"count": {
+			"type": "integer",
+			"default": 6
+		},
+		"columns": {
+			"type": "integer",
+			"default": 3
+		},
+		"amenity": {
+			"type": "string",
+			"default": ""
+		},
+		"featuredOnly": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,70 @@
+/* Grille de chambres : mobile d'abord. */
+.maji-rooms {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--wp--preset--spacing--40);
+}
+
+@media (min-width: 600px) {
+	.maji-rooms--cols-2,
+	.maji-rooms--cols-3,
+	.maji-rooms--cols-4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 900px) {
+	.maji-rooms--cols-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.maji-rooms--cols-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.maji-rooms__card {
+	background: var(--wp--preset--color--surface);
+	border-radius: var(--wp--custom--maji--radius--md);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.maji-rooms__media img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+.maji-rooms__body {
+	padding: var(--wp--preset--spacing--40);
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+}
+
+.maji-rooms__title {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--lg);
+}
+
+.maji-rooms__title a {
+	text-decoration: none;
+	color: var(--wp--preset--color--contrast);
+}
+
+.maji-rooms__meta {
+	margin: 0;
+	display: flex;
+	gap: var(--wp--preset--spacing--30);
+	font-size: var(--wp--preset--font-size--xs);
+	color: var(--wp--preset--color--ink-muted);
+}
+
+.maji-rooms__price {
+	margin: 0;
+	font-weight: 700;
+	color: var(--wp--preset--color--primary);
+}

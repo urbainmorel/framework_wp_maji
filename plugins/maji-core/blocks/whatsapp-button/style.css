@@ -1,0 +1,24 @@
+/* Bouton WhatsApp : couleur officielle, tokens du thème pour le reste. */
+.maji-whatsapp__link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: #25d366;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.maji-whatsapp__link:hover,
+.maji-whatsapp__link:focus {
+	background: #1eb958;
+	color: #ffffff;
+}
+
+.maji-whatsapp--compact .maji-whatsapp__link {
+	padding: 0.5rem 0.875rem;
+	font-size: var(--wp--preset--font-size--xs);
+}
+
+.maji-whatsapp__icon {
+	flex-shrink: 0;
+}

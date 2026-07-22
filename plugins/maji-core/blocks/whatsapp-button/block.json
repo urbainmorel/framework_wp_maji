@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/whatsapp-button",
+	"version": "1.0.0",
+	"title": "Bouton WhatsApp",
+	"category": "maji",
+	"icon": "format-chat",
+	"description": "Bouton « click-to-chat » WhatsApp avec message pré-rempli selon le contexte.",
+	"keywords": [ "whatsapp", "contact", "chat" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"context": {
+			"type": "string",
+			"default": "contact"
+		},
+		"item": {
+			"type": "string",
+			"default": ""
+		},
+		"label": {
+			"type": "string",
+			"default": ""
+		},
+		"variant": {
+			"type": "string",
+			"default": "button"
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

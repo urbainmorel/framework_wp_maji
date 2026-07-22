@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/opening-hours",
+	"version": "1.0.0",
+	"title": "Horaires d'ouverture",
+	"category": "maji",
+	"icon": "clock",
+	"description": "Affiche les horaires d'ouverture définis dans les réglages Établissement.",
+	"keywords": [ "horaires", "ouverture" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"compact": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true
+		},
+		"color": {
+			"text": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

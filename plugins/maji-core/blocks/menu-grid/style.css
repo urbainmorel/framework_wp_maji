@@ -1,0 +1,73 @@
+/* Menu grille photo. */
+.maji-menu-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--wp--preset--spacing--30);
+}
+
+@media (min-width: 900px) {
+	.maji-menu-grid--cols-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.maji-menu-grid--cols-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.maji-menu-grid__card {
+	background: var(--wp--preset--color--surface);
+	border-radius: var(--wp--custom--maji--radius--md);
+	overflow: hidden;
+}
+
+.maji-menu-grid__media {
+	position: relative;
+	display: block;
+}
+
+.maji-menu-grid__media img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+.maji-menu-grid__badges {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	display: flex;
+	gap: 0.25rem;
+}
+
+.maji-badge {
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--accent-contrast);
+	font-size: 0.6875rem;
+	font-weight: 700;
+	padding: 0.125rem 0.5rem;
+	border-radius: var(--wp--custom--maji--radius--pill);
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.maji-menu-grid__body {
+	padding: var(--wp--preset--spacing--30);
+}
+
+.maji-menu-grid__name {
+	margin: 0 0 0.25rem;
+	font-size: var(--wp--preset--font-size--md);
+}
+
+.maji-menu-grid__name a {
+	text-decoration: none;
+	color: var(--wp--preset--color--contrast);
+}
+
+.maji-menu-grid__price {
+	margin: 0;
+	font-weight: 700;
+	color: var(--wp--preset--color--primary);
+}

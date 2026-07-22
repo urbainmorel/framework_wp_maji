@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/menu-grid",
+	"version": "1.0.0",
+	"title": "Menu — grille photo",
+	"category": "maji",
+	"icon": "screenoptions",
+	"description": "Plats en grille avec photos, prix en FCFA et badges (populaire, épicé, nouveau).",
+	"keywords": [ "menu", "plats", "restaurant" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"count": {
+			"type": "integer",
+			"default": 8
+		},
+		"columns": {
+			"type": "integer",
+			"default": 4
+		},
+		"category": {
+			"type": "string",
+			"default": ""
+		},
+		"badge": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}
