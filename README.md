@@ -44,7 +44,7 @@ npm run lint:js        # ESLint @wordpress
 
 **Pour l'intégrateur MAJI :**
 
-- [Guide de création d'un site](docs/GUIDE-CREATION-SITE.md) — de l'ADN à la livraison (référence complète du `dna.json`, seed, provision, contrôle qualité)
+- [Guide de création d'un site](docs/GUIDE-CREATION-SITE.md) — **pas à pas pour débutant** : de la fiche d'identité à la livraison, sans supposer de connaissances techniques (terminal, JSON, exemple complet, glossaire)
 - [Installation](docs/INSTALLATION.md) — installation automatisée/manuelle d'un site client
 - [Exploitation](docs/OPERATIONS.md) — registre anti-clones, branchement n8n, mises à jour de flotte
 - [Catalogue des sections](docs/SECTIONS.md) — les 28 patterns, leurs compositions, jetons et médias
