@@ -3,7 +3,7 @@
  * Plugin Name:       MAJI Core
  * Plugin URI:        https://github.com/urbainmorel/framework_wp_maji
  * Description:       Fonctionnalités métier des sites MAJI : modes hôtel/restaurant, réservations, commandes, WhatsApp, webhooks, SEO de base et outillage d'usine.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.6
  * Requires PHP:      8.1
  * Author:            MAJI
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MAJI_CORE_VERSION', '1.0.0' );
+define( 'MAJI_CORE_VERSION', '1.1.0' );
 define( 'MAJI_CORE_FILE', __FILE__ );
 define( 'MAJI_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MAJI_CORE_URL', plugin_dir_url( __FILE__ ) );

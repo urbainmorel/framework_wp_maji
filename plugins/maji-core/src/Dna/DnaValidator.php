@@ -173,6 +173,12 @@ final class DnaValidator {
 		if ( isset( $design['spacing_mood'] ) && ! in_array( $design['spacing_mood'], [ 'compact', 'normal', 'aere' ], true ) ) {
 			$errors[] = 'design.spacing_mood : compact, normal ou aere.';
 		}
+		if ( isset( $design['section_bg_rhythm'] ) && ! in_array( $design['section_bg_rhythm'], [ 'uni', 'alterne', 'bandes', 'contraste' ], true ) ) {
+			$errors[] = 'design.section_bg_rhythm : uni, alterne, bandes ou contraste.';
+		}
+		if ( isset( $design['section_style'] ) && ! in_array( $design['section_style'], [ 'auto', 'net', 'ombre', 'minimal' ], true ) ) {
+			$errors[] = 'design.section_style : auto, net, ombre ou minimal.';
+		}
 
 		// Palette : hex valides puis contrastes AA.
 		$palette = is_array( $design['palette'] ?? null ) ? $design['palette'] : [];

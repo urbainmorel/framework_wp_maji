@@ -81,6 +81,8 @@
 				},
 				"radius_scale": { "enum": [ "sm", "md", "lg" ] },
 				"spacing_mood": { "enum": [ "compact", "normal", "aere" ] },
+				"section_bg_rhythm": { "enum": [ "uni", "alterne", "bandes", "contraste" ] },
+				"section_style": { "enum": [ "auto", "net", "ombre", "minimal" ] },
 				"image_treatment": {
 					"type": "object",
 					"additionalProperties": false,

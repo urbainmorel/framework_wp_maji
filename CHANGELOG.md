@@ -6,6 +6,15 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-07-22
+
+### Added
+
+- **V2-A — Empreinte anti-clones enrichie** (`docs/DIVERSITE.md` §4) : le registre passe de 6 à 11 axes pondérés (`da`, `hero`, `font_pair`, `palette_hue_bucket`, `header`, `footer`, `image_treatment_bucket`, `section_bg_rhythm`, `spacing_mood`, `composition_hash`, `radius_scale`). La trilogie `da + hero + font_pair` somme exactement au seuil (0.70) : deux sites ne peuvent plus partager à la fois direction artistique, hero et paire typographique. Nouveaux buckets `image_treatment_bucket` (overlay × duotone × ratio) et `composition_hash` (ordre des sections + `section_style`, remplace `section_order_hash`).
+- **Champs d'ADN optionnels `design.section_bg_rhythm` (uni/alterne/bandes/contraste) et `design.section_style` (auto/net/ombre/minimal)** : ajoutés au schéma `dna.schema.json` et au validateur ; alimentent l'empreinte enrichie. Rétrocompatibles (absents ⇒ comportement V1).
+
+## [1.0.0]
+
 ### Added
 
 - **M1 — Socle** : monorepo (thème `maji-framework`, plugin `maji-core`), outillage Composer (PHPCS/WPCS, PHPStan 6, PHPUnit), npm (`@wordpress/scripts`, `wp-env`), CI GitHub Actions, documentation de base (README, AGENTS/CLAUDE, docs/).

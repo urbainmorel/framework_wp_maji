@@ -19,17 +19,27 @@ use MAJI\Core\Support\Wcag;
 final class Registry {
 
 	/**
-	 * Pondérations du score (STI §5.3).
+	 * Pondérations du score (empreinte enrichie V2 — voir docs/DIVERSITE.md §4).
+	 *
+	 * La « trilogie de première impression » (da + hero + font_pair) somme
+	 * exactement au seuil (0.30 + 0.22 + 0.18 = 0.70) : deux sites ne peuvent
+	 * pas partager à la fois la même DA, le même hero et la même paire typo.
+	 * Les 8 axes secondaires affinent la détection des quasi-clones.
 	 *
 	 * @var array<string, float>
 	 */
 	public const WEIGHTS = [
-		'da'                 => 0.30,
-		'font_pair'          => 0.20,
-		'hero'               => 0.20,
-		'palette_hue_bucket' => 0.15,
-		'header'             => 0.10,
-		'section_order_hash' => 0.05,
+		'da'                     => 0.30,
+		'hero'                   => 0.22,
+		'font_pair'              => 0.18,
+		'palette_hue_bucket'     => 0.06,
+		'header'                 => 0.05,
+		'footer'                 => 0.04,
+		'image_treatment_bucket' => 0.04,
+		'section_bg_rhythm'      => 0.03,
+		'spacing_mood'           => 0.03,
+		'composition_hash'       => 0.03,
+		'radius_scale'           => 0.02,
 	];
 
 	/**
@@ -39,6 +49,9 @@ final class Registry {
 
 	/**
 	 * Construit l'empreinte d'un ADN.
+	 *
+	 * Axes optionnels absents de l'ADN ⇒ chaîne vide : ils ne contribuent
+	 * jamais au score (rétrocompatibilité V1). Voir `similarity()`.
 	 *
 	 * @param array<string, mixed> $dna ADN décodé.
 	 * @return array<string, mixed> Empreinte.
@@ -53,16 +66,23 @@ final class Registry {
 		$primary  = (string) ( $resolved['primary'] ?? '#000000' );
 
 		$home_sections = self::home_sections( $structure );
+		$treatment     = is_array( $design['image_treatment'] ?? null ) ? $design['image_treatment'] : [];
+		$section_style = (string) ( $design['section_style'] ?? '' );
 
 		return [
-			'site_slug'          => (string) ( $dna['meta']['site_slug'] ?? '' ),
-			'da'                 => $da,
-			'font_pair'          => (string) ( $design['font_pair'] ?? '' ),
-			'hero'               => $home_sections[0] ?? '',
-			'header'             => (string) ( $structure['header'] ?? '' ),
-			'palette_hue_bucket' => self::hue_bucket( $primary ),
-			'section_order_hash' => sha1( implode( '|', $home_sections ) ),
-			'delivered_at'       => gmdate( 'Y-m-d' ),
+			'site_slug'              => (string) ( $dna['meta']['site_slug'] ?? '' ),
+			'da'                     => $da,
+			'hero'                   => $home_sections[0] ?? '',
+			'font_pair'              => (string) ( $design['font_pair'] ?? '' ),
+			'palette_hue_bucket'     => self::hue_bucket( $primary ),
+			'header'                 => (string) ( $structure['header'] ?? '' ),
+			'footer'                 => (string) ( $structure['footer'] ?? '' ),
+			'image_treatment_bucket' => self::image_treatment_bucket( $treatment ),
+			'section_bg_rhythm'      => (string) ( $design['section_bg_rhythm'] ?? '' ),
+			'spacing_mood'           => (string) ( $design['spacing_mood'] ?? '' ),
+			'composition_hash'       => self::composition_hash( $home_sections, $section_style ),
+			'radius_scale'           => (string) ( $design['radius_scale'] ?? '' ),
+			'delivered_at'           => gmdate( 'Y-m-d' ),
 		];
 	}
 
@@ -73,6 +93,39 @@ final class Registry {
 	 */
 	public static function hue_bucket( string $hex ): int {
 		return (int) floor( Wcag::hue( $hex ) / 30 ) % 12;
+	}
+
+	/**
+	 * Bucket de traitement d'image : overlay × duotone × ratio du hero.
+	 *
+	 * Traitement absent ⇒ chaîne vide (aucun signal, non bloquant).
+	 *
+	 * @param array<string, mixed> $treatment Bloc design.image_treatment.
+	 */
+	public static function image_treatment_bucket( array $treatment ): string {
+		if ( [] === $treatment ) {
+			return '';
+		}
+		$overlay = (string) ( $treatment['overlay'] ?? 'none' );
+		$duotone = empty( $treatment['duotone'] ) ? 'flat' : 'duo';
+		$ratio   = (string) ( $treatment['hero_ratio'] ?? '' );
+		return implode( ':', [ $overlay, $duotone, $ratio ] );
+	}
+
+	/**
+	 * Hash de composition : ordre des sections de l'accueil + variante de style.
+	 *
+	 * Remplace `section_order_hash` (V1) en intégrant `section_style` pour
+	 * distinguer deux accueils au même ordre mais au style de section distinct.
+	 *
+	 * @param string[] $home_sections Sections de l'accueil (dans l'ordre).
+	 * @param string   $section_style Variante de style des sections.
+	 */
+	public static function composition_hash( array $home_sections, string $section_style ): string {
+		if ( [] === $home_sections && '' === $section_style ) {
+			return '';
+		}
+		return sha1( implode( '|', $home_sections ) . '#' . $section_style );
 	}
 
 	/**
@@ -140,12 +193,17 @@ final class Registry {
 	 */
 	public static function suggestions( array $colliding_axes ): array {
 		$labels = [
-			'da'                 => 'changez la direction artistique (design.da)',
-			'font_pair'          => 'changez la paire typographique (design.font_pair)',
-			'hero'               => 'changez le hero de l\'accueil (première section)',
-			'palette_hue_bucket' => 'changez la teinte de la couleur primaire (design.palette.primary)',
-			'header'             => 'changez la variante d\'en-tête (structure.header)',
-			'section_order_hash' => 'réordonnez ou remplacez les sections de l\'accueil',
+			'da'                     => 'changez la direction artistique (design.da)',
+			'hero'                   => 'changez le hero de l\'accueil (première section)',
+			'font_pair'              => 'changez la paire typographique (design.font_pair)',
+			'palette_hue_bucket'     => 'changez la teinte de la couleur primaire (design.palette.primary)',
+			'header'                 => 'changez la variante d\'en-tête (structure.header)',
+			'footer'                 => 'changez la variante de pied de page (structure.footer)',
+			'image_treatment_bucket' => 'changez le traitement d\'image (design.image_treatment : overlay, duotone, ratio)',
+			'section_bg_rhythm'      => 'changez le rythme des fonds de sections (design.section_bg_rhythm)',
+			'spacing_mood'           => 'changez l\'humeur d\'espacement (design.spacing_mood)',
+			'composition_hash'       => 'réordonnez les sections de l\'accueil ou changez le style de section (design.section_style)',
+			'radius_scale'           => 'changez l\'échelle des rayons (design.radius_scale)',
 		];
 		$out    = [];
 		foreach ( array_keys( self::WEIGHTS ) as $axis ) {
