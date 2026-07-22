@@ -1,0 +1,79 @@
+/* Formulaires MAJI : styles pilotés par les tokens du thème. */
+.maji-form {
+	background: var(--wp--preset--color--surface);
+	border-radius: var(--wp--custom--maji--radius--md);
+	padding: var(--wp--preset--spacing--50);
+}
+
+.maji-form__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: var(--wp--preset--spacing--30);
+}
+
+.maji-form__row {
+	margin: 0 0 var(--wp--preset--spacing--30);
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+}
+
+.maji-form__row label {
+	font-size: var(--wp--preset--font-size--sm);
+	font-weight: 600;
+	color: var(--wp--preset--color--contrast);
+}
+
+.maji-form__row input,
+.maji-form__row select,
+.maji-form__row textarea {
+	font: inherit;
+	padding: 0.625rem 0.75rem;
+	border: 1px solid var(--wp--preset--color--surface-alt);
+	border-radius: var(--wp--custom--maji--radius--sm);
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--ink);
+}
+
+.maji-form__row--website {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.maji-form__row--consent label {
+	flex-direction: row;
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	font-weight: 400;
+	color: var(--wp--preset--color--ink);
+}
+
+.maji-form__required {
+	color: var(--wp--preset--color--accent);
+}
+
+.maji-form__submit {
+	cursor: pointer;
+	border: none;
+	width: 100%;
+}
+
+.maji-form__feedback {
+	padding: 0.75rem 1rem;
+	border-radius: var(--wp--custom--maji--radius--sm);
+	font-size: var(--wp--preset--font-size--sm);
+}
+
+.maji-form__feedback--success {
+	background: color-mix(in srgb, var(--wp--preset--color--primary) 12%, transparent);
+	color: var(--wp--preset--color--contrast);
+}
+
+.maji-form__feedback--error {
+	background: #fee2e2;
+	color: #991b1b;
+}

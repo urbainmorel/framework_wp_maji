@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/reservation-form",
+	"version": "1.0.0",
+	"title": "Demande de réservation",
+	"category": "maji",
+	"icon": "calendar-alt",
+	"description": "Formulaire de demande de réservation de chambre : dates, personnes, coordonnées, consentement WhatsApp.",
+	"keywords": [ "réservation", "hôtel", "chambre" ],
+	"textdomain": "maji-core",
+	"attributes": {
+		"showRoomPicker": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"color": {
+			"background": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

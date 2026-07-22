@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/block.json",
+	"apiVersion": 3,
+	"name": "maji/table-booking-form",
+	"version": "1.0.0",
+	"title": "Réservation de table",
+	"category": "maji",
+	"icon": "food",
+	"description": "Formulaire de réservation de table : date, heure, couverts, coordonnées, consentement WhatsApp.",
+	"keywords": [ "réservation", "restaurant", "table" ],
+	"textdomain": "maji-core",
+	"supports": {
+		"html": false,
+		"align": [ "wide" ],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"color": {
+			"background": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}
