@@ -42,12 +42,22 @@ npm run lint:js        # ESLint @wordpress
 
 ## Documentation
 
+**Pour l'intégrateur MAJI :**
+
+- [Guide de création d'un site](docs/GUIDE-CREATION-SITE.md) — de l'ADN à la livraison (référence complète du `dna.json`, seed, provision, contrôle qualité)
+- [Installation](docs/INSTALLATION.md) — installation automatisée/manuelle d'un site client
+- [Exploitation](docs/OPERATIONS.md) — registre anti-clones, branchement n8n, mises à jour de flotte
+- [Catalogue des sections](docs/SECTIONS.md) — les 28 patterns, leurs compositions, jetons et médias
+
+**Pour le client final :**
+
+- [Guide du gérant](docs/GUIDE-GERANT.md) — plats, prix, chambres, réservations et commandes au quotidien (non technique)
+
+**Référence :**
+
 - [PRD](docs/PRD-MAJI-Framework.md) — périmètre produit
 - [STI](docs/STI-MAJI-Framework.md) — spécifications techniques
-- [Installation](docs/INSTALLATION.md) — installation d'un site client
-- [Exploitation](docs/OPERATIONS.md) — provision, registre, mises à jour de flotte
-- [Sections](docs/SECTIONS.md) — catalogue de la bibliothèque de sections
-- [Décisions](docs/DECISIONS.md) — journal des décisions techniques
+- [Décisions](docs/DECISIONS.md) — journal des décisions d'implémentation
 
 ## Licence
 
