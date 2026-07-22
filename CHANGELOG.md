@@ -6,6 +6,13 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 
 À partir de la 1.1.0, les entrées de version et les tags sont générés automatiquement par [release-please](https://github.com/googleapis/release-please) depuis les Conventional Commits (voir `.github/workflows/release-please.yml`). Les changements en attente apparaissent dans la « Release PR » du dépôt, pas dans une section « Unreleased ».
 
+## [1.2.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.1.0...v1.2.0) (2026-07-22)
+
+
+### Ajouté
+
+* V2-B — apply section background rhythm and section style levers ([3d3c4fe](https://github.com/urbainmorel/framework_wp_maji/commit/3d3c4fed8007f8725d36282a62828ccdbf6ee3a7))
+
 ## [1.1.0] — 2026-07-22
 
 ### Added
