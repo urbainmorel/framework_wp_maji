@@ -59,6 +59,7 @@ npm run lint:js        # ESLint @wordpress
 - [PRD](docs/PRD-MAJI-Framework.md) — périmètre produit
 - [STI](docs/STI-MAJI-Framework.md) — spécifications techniques
 - [Décisions](docs/DECISIONS.md) — journal des décisions d'implémentation
+- [Diversité (cadrage V2)](docs/DIVERSITE.md) — 6 leviers, maximums de DA/heros/sections, empreinte anti-clones enrichie pour 1000+ sites distincts
 
 ## Licence
 
