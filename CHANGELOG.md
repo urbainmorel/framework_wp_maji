@@ -9,3 +9,4 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 ### Added
 
 - **M1 — Socle** : monorepo (thème `maji-framework`, plugin `maji-core`), outillage Composer (PHPCS/WPCS, PHPStan 6, PHPUnit), npm (`@wordpress/scripts`, `wp-env`), CI GitHub Actions, documentation de base (README, AGENTS/CLAUDE, docs/).
+- **M2 — Thème & tokens** : `theme.json` v3 complet (palette sémantique 10 slugs, typo fluide xs→3xl, `custom.maji` radius/shadow/motion, duotone), 3 directions artistiques (`da-editorial-sombre`, `da-solaire-minimal`, `da-artisanal-texture`), catalogue de 6 paires typographiques (WOFF2 auto-hébergés, OFL), 4 en-têtes + 3 pieds de page, gabarits de base + chambres + WooCommerce.

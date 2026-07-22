@@ -1,0 +1,52 @@
+<!-- wp:template-part {"slug":"header-02","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--70)">
+	<!-- wp:woocommerce/breadcrumbs /-->
+	<!-- wp:columns {"align":"wide"} -->
+	<div class="wp-block-columns alignwide">
+		<!-- wp:column {"width":"50%"} -->
+		<div class="wp-block-column" style="flex-basis:50%">
+			<!-- wp:woocommerce/product-image-gallery /-->
+		</div>
+		<!-- /wp:column -->
+		<!-- wp:column {"width":"50%"} -->
+		<div class="wp-block-column" style="flex-basis:50%">
+			<!-- wp:post-title {"level":1,"__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
+			<!-- wp:woocommerce/product-price {"isDescendentOfSingleProductTemplate":true,"fontSize":"xl"} /-->
+			<!-- wp:post-excerpt {"__woocommerceNamespace":"woocommerce/product-query/product-summary"} /-->
+			<!-- wp:woocommerce/add-to-cart-form /-->
+			<!-- wp:woocommerce/product-meta -->
+			<div class="wp-block-woocommerce-product-meta">
+				<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
+				<div class="wp-block-group">
+					<!-- wp:post-terms {"term":"product_cat","prefix":"Catégorie : ","fontSize":"xs"} /-->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:woocommerce/product-meta -->
+		</div>
+		<!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
+	<!-- wp:woocommerce/product-details {"align":"wide"} /-->
+	<!-- wp:woocommerce/related-products {"align":"wide"} -->
+	<div class="wp-block-woocommerce-related-products alignwide">
+		<!-- wp:query {"queryId":0,"query":{"perPage":4,"pages":0,"offset":0,"postType":"product","order":"asc","orderBy":"title","inherit":false},"displayLayout":{"type":"flex","columns":4},"namespace":"woocommerce/related-products"} -->
+		<div class="wp-block-query">
+			<!-- wp:heading {"level":2,"fontSize":"xl"} -->
+			<h2 class="wp-block-heading has-xl-font-size">Vous aimerez aussi</h2>
+			<!-- /wp:heading -->
+			<!-- wp:post-template {"__woocommerceNamespace":"woocommerce/product-query/product-template"} -->
+			<!-- wp:woocommerce/product-image {"isDescendentOfQueryLoop":true} /-->
+			<!-- wp:post-title {"isLink":true,"level":3,"fontSize":"sm","__woocommerceNamespace":"woocommerce/product-query/product-title"} /-->
+			<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"fontSize":"sm"} /-->
+			<!-- /wp:post-template -->
+		</div>
+		<!-- /wp:query -->
+	</div>
+	<!-- /wp:woocommerce/related-products -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer-01","tagName":"footer"} /-->

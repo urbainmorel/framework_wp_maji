@@ -1,0 +1,98 @@
+[
+	{
+		"id": "fp-01",
+		"name": "Fraunces / Inter",
+		"heading": {
+			"family": "Fraunces",
+			"slug": "fraunces",
+			"weights": [ 400, 700 ],
+			"files": [ "fraunces/fraunces-400.woff2", "fraunces/fraunces-700.woff2" ]
+		},
+		"body": {
+			"family": "Inter",
+			"slug": "inter",
+			"weights": [ 400, 700 ],
+			"files": [ "inter/inter-400.woff2", "inter/inter-700.woff2" ]
+		}
+	},
+	{
+		"id": "fp-02",
+		"name": "Playfair Display / Source Sans 3",
+		"heading": {
+			"family": "Playfair Display",
+			"slug": "playfair-display",
+			"weights": [ 400, 700 ],
+			"files": [ "playfair-display/playfair-display-400.woff2", "playfair-display/playfair-display-700.woff2" ]
+		},
+		"body": {
+			"family": "Source Sans 3",
+			"slug": "source-sans-3",
+			"weights": [ 400, 700 ],
+			"files": [ "source-sans-3/source-sans-3-400.woff2", "source-sans-3/source-sans-3-700.woff2" ]
+		}
+	},
+	{
+		"id": "fp-03",
+		"name": "Sora / Inter",
+		"heading": {
+			"family": "Sora",
+			"slug": "sora",
+			"weights": [ 400, 700 ],
+			"files": [ "sora/sora-400.woff2", "sora/sora-700.woff2" ]
+		},
+		"body": {
+			"family": "Inter",
+			"slug": "inter",
+			"weights": [ 400, 700 ],
+			"files": [ "inter/inter-400.woff2", "inter/inter-700.woff2" ]
+		}
+	},
+	{
+		"id": "fp-04",
+		"name": "Cormorant Garamond / Work Sans",
+		"heading": {
+			"family": "Cormorant Garamond",
+			"slug": "cormorant-garamond",
+			"weights": [ 400, 700 ],
+			"files": [ "cormorant-garamond/cormorant-garamond-400.woff2", "cormorant-garamond/cormorant-garamond-700.woff2" ]
+		},
+		"body": {
+			"family": "Work Sans",
+			"slug": "work-sans",
+			"weights": [ 400, 700 ],
+			"files": [ "work-sans/work-sans-400.woff2", "work-sans/work-sans-700.woff2" ]
+		}
+	},
+	{
+		"id": "fp-05",
+		"name": "Lora / Nunito Sans",
+		"heading": {
+			"family": "Lora",
+			"slug": "lora",
+			"weights": [ 400, 700 ],
+			"files": [ "lora/lora-400.woff2", "lora/lora-700.woff2" ]
+		},
+		"body": {
+			"family": "Nunito Sans",
+			"slug": "nunito-sans",
+			"weights": [ 400, 700 ],
+			"files": [ "nunito-sans/nunito-sans-400.woff2", "nunito-sans/nunito-sans-700.woff2" ]
+		}
+	},
+	{
+		"id": "fp-06",
+		"name": "Space Grotesk / IBM Plex Sans",
+		"heading": {
+			"family": "Space Grotesk",
+			"slug": "space-grotesk",
+			"weights": [ 400, 700 ],
+			"files": [ "space-grotesk/space-grotesk-400.woff2", "space-grotesk/space-grotesk-700.woff2" ]
+		},
+		"body": {
+			"family": "IBM Plex Sans",
+			"slug": "ibm-plex-sans",
+			"weights": [ 400, 700 ],
+			"files": [ "ibm-plex-sans/ibm-plex-sans-400.woff2", "ibm-plex-sans/ibm-plex-sans-700.woff2" ]
+		}
+	}
+]

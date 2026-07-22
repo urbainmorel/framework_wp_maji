@@ -22,5 +22,11 @@ function maji_framework_enqueue_assets(): void {
 		[],
 		MAJI_FRAMEWORK_VERSION
 	);
+	wp_enqueue_style(
+		'maji-framework-structural',
+		get_template_directory_uri() . '/assets/css/maji.css',
+		[],
+		MAJI_FRAMEWORK_VERSION
+	);
 }
 add_action( 'wp_enqueue_scripts', 'maji_framework_enqueue_assets' );

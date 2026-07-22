@@ -1,0 +1,44 @@
+/*
+ * Styles structurels minimaux du thème MAJI.
+ * Tout style visuel vient des tokens theme.json ; ce fichier ne contient
+ * que les comportements impossibles à exprimer en theme.json.
+ */
+
+/* En-tête transparent : superposé au hero. */
+.maji-header--transparent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	background: transparent;
+	color: var(--wp--preset--color--primary-contrast);
+}
+
+.maji-header--transparent .wp-block-site-title a,
+.maji-header--transparent .wp-block-navigation a {
+	color: inherit;
+}
+
+/* Focus visible sur tous les éléments interactifs (accessibilité AA). */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 2px;
+}
+
+/* Transitions douces pilotées par les tokens de mouvement. */
+.wp-element-button,
+.wp-block-button__link {
+	transition:
+		background-color var(--wp--custom--maji--motion--duration) var(--wp--custom--maji--motion--easing),
+		color var(--wp--custom--maji--motion--duration) var(--wp--custom--maji--motion--easing);
+}
+
+/* Cartes : ombre issue des tokens (appliquée via classe utilitaire). */
+.maji-card {
+	box-shadow: var(--wp--custom--maji--shadow--card);
+}
+
+.maji-card--float {
+	box-shadow: var(--wp--custom--maji--shadow--float);
+}
