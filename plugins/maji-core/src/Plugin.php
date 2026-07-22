@@ -86,16 +86,25 @@ final class Plugin {
 		$this->settings     = new Settings\Settings();
 		$this->mode_manager = new Modes\ModeManager( $this->settings );
 
+		$dispatcher = new Webhooks\Dispatcher( $this->settings );
+
 		$modules = [
 			new Admin\SettingsPage( $this->settings ),
 			new Hotel\Reservations(),
 			new Rest\ReservationController(),
 			new Rest\PublicSettingsController( $this->settings ),
 			new Blocks\Blocks(),
+			$dispatcher,
+			new Webhooks\LogPage( $dispatcher ),
+			new Seo\Seo( $this->settings, $this->mode_manager ),
 		];
 
 		if ( $this->mode_manager->is_hotel() ) {
 			$modules[] = new Hotel\Rooms();
+		}
+
+		if ( $this->mode_manager->is_restaurant() ) {
+			$modules[] = new Restaurant\Restaurant( $this->settings );
 		}
 
 		foreach ( $modules as $module ) {
@@ -130,6 +139,7 @@ final class Plugin {
 		if ( null !== $role && ! $role->has_cap( 'manage_maji' ) ) {
 			$role->add_cap( 'manage_maji' );
 		}
+		Webhooks\Log::install();
 		flush_rewrite_rules();
 	}
 

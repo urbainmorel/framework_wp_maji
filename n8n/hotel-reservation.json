@@ -1,0 +1,68 @@
+{
+	"name": "MAJI — Réservation hôtel",
+	"nodes": [
+		{
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "maji-reservation",
+				"responseMode": "onReceived",
+				"options": {}
+			},
+			"id": "webhook-reservation",
+			"name": "Webhook réservation",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [ 0, 0 ]
+		},
+		{
+			"parameters": {
+				"jsCode": "// Vérification de la signature HMAC-SHA256 (en-tête X-MAJI-Signature).\n// REMPLACER LA VALEUR DU SECRET par celle du site (via `wp option get maji_webhook_secret`).\nconst crypto = require('crypto');\nconst SECRET = 'REMPLACER_PAR_LE_SECRET_DU_SITE';\nconst body = JSON.stringify($input.first().json.body);\nconst signature = $input.first().json.headers['x-maji-signature'] || '';\nconst expected = 'sha256=' + crypto.createHmac('sha256', SECRET).update(body).digest('hex');\nif (signature !== expected) {\n  throw new Error('Signature invalide — webhook rejeté');\n}\nreturn [{ json: $input.first().json.body }];"
+			},
+			"id": "verify-signature",
+			"name": "Vérifier signature",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [ 220, 0 ]
+		},
+		{
+			"parameters": {
+				"jsCode": "// Construit le message WhatsApp pour le gérant.\nconst r = $input.first().json.reservation;\nconst quoi = r.type === 'table' ? `Table — ${r.date_time}` : `${r.room ? r.room.name : 'Chambre'} — du ${r.checkin} au ${r.checkout}`;\nconst text = `🛎 NOUVELLE DEMANDE DE RÉSERVATION n°${r.id}\\n\\n${quoi}\\n${r.guests} personne(s)\\nClient : ${r.customer.name} — ${r.customer.phone}\\n${r.message ? 'Message : ' + r.message : ''}\\n\\nRépondez au client sur WhatsApp pour confirmer.`;\nreturn [{ json: { text, phone: r.customer.phone, consent: r.customer.whatsapp_consent } }];"
+			},
+			"id": "build-message",
+			"name": "Composer le message",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [ 440, 0 ]
+		},
+		{
+			"parameters": {
+				"method": "POST",
+				"url": "https://graph.facebook.com/v19.0/REMPLACER_PHONE_NUMBER_ID/messages",
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"REMPLACER_NUMERO_GERANT\",\n  \"type\": \"text\",\n  \"text\": { \"body\": {{ JSON.stringify($json.text) }} }\n}",
+				"options": {}
+			},
+			"id": "notify-whatsapp",
+			"name": "Notifier le gérant (WhatsApp API)",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [ 660, 0 ]
+		}
+	],
+	"connections": {
+		"Webhook réservation": {
+			"main": [ [ { "node": "Vérifier signature", "type": "main", "index": 0 } ] ]
+		},
+		"Vérifier signature": {
+			"main": [ [ { "node": "Composer le message", "type": "main", "index": 0 } ] ]
+		},
+		"Composer le message": {
+			"main": [ [ { "node": "Notifier le gérant (WhatsApp API)", "type": "main", "index": 0 } ] ]
+		}
+	},
+	"settings": { "executionOrder": "v1" },
+	"pinData": {}
+}

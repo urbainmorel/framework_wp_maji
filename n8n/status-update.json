@@ -1,0 +1,68 @@
+{
+	"name": "MAJI — Changement de statut",
+	"nodes": [
+		{
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "maji-status",
+				"responseMode": "onReceived",
+				"options": {}
+			},
+			"id": "webhook-status",
+			"name": "Webhook statut",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [ 0, 0 ]
+		},
+		{
+			"parameters": {
+				"jsCode": "// Vérification de la signature HMAC-SHA256 (en-tête X-MAJI-Signature).\n// REMPLACER LA VALEUR DU SECRET par celle du site (via `wp option get maji_webhook_secret`).\nconst crypto = require('crypto');\nconst SECRET = 'REMPLACER_PAR_LE_SECRET_DU_SITE';\nconst body = JSON.stringify($input.first().json.body);\nconst signature = $input.first().json.headers['x-maji-signature'] || '';\nconst expected = 'sha256=' + crypto.createHmac('sha256', SECRET).update(body).digest('hex');\nif (signature !== expected) {\n  throw new Error('Signature invalide — webhook rejeté');\n}\nreturn [{ json: $input.first().json.body }];"
+			},
+			"id": "verify-signature",
+			"name": "Vérifier signature",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [ 220, 0 ]
+		},
+		{
+			"parameters": {
+				"jsCode": "// Message au client selon le nouveau statut (uniquement avec consentement).\nconst p = $input.first().json;\nconst isOrder = p.event.startsWith('order.');\nconst entity = isOrder ? p.order : p.reservation;\nif (!entity.customer.whatsapp_consent) {\n  return []; // pas de consentement, pas de message\n}\nconst labels = {\n  confirmed: 'confirmée ✅', declined: 'refusée ❌', cancelled: 'annulée',\n  processing: 'en préparation 👨‍🍳', completed: 'livrée / terminée ✅', cancelled_order: 'annulée'\n};\nconst quoi = isOrder ? `votre commande n°${entity.number}` : `votre demande de réservation`;\nconst statut = labels[p.new_status] || p.new_status;\nconst text = `Bonjour ${entity.customer.name},\\n${quoi} est maintenant : ${statut}.\\nMerci de votre confiance !`;\nreturn [{ json: { text, phone: entity.customer.phone } }];"
+			},
+			"id": "build-message",
+			"name": "Composer le message client",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [ 440, 0 ]
+		},
+		{
+			"parameters": {
+				"method": "POST",
+				"url": "https://graph.facebook.com/v19.0/REMPLACER_PHONE_NUMBER_ID/messages",
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.phone }}\",\n  \"type\": \"text\",\n  \"text\": { \"body\": {{ JSON.stringify($json.text) }} }\n}",
+				"options": {}
+			},
+			"id": "notify-client",
+			"name": "Notifier le client (WhatsApp API)",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [ 660, 0 ]
+		}
+	],
+	"connections": {
+		"Webhook statut": {
+			"main": [ [ { "node": "Vérifier signature", "type": "main", "index": 0 } ] ]
+		},
+		"Vérifier signature": {
+			"main": [ [ { "node": "Composer le message client", "type": "main", "index": 0 } ] ]
+		},
+		"Composer le message client": {
+			"main": [ [ { "node": "Notifier le client (WhatsApp API)", "type": "main", "index": 0 } ] ]
+		}
+	},
+	"settings": { "executionOrder": "v1" },
+	"pinData": {}
+}

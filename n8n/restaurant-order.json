@@ -1,0 +1,68 @@
+{
+	"name": "MAJI — Commande restaurant",
+	"nodes": [
+		{
+			"parameters": {
+				"httpMethod": "POST",
+				"path": "maji-order",
+				"responseMode": "onReceived",
+				"options": {}
+			},
+			"id": "webhook-order",
+			"name": "Webhook commande",
+			"type": "n8n-nodes-base.webhook",
+			"typeVersion": 2,
+			"position": [ 0, 0 ]
+		},
+		{
+			"parameters": {
+				"jsCode": "// Vérification de la signature HMAC-SHA256 (en-tête X-MAJI-Signature).\n// REMPLACER LA VALEUR DU SECRET par celle du site (option maji_webhook_secret, via `wp option get maji_webhook_secret`).\nconst crypto = require('crypto');\nconst SECRET = 'REMPLACER_PAR_LE_SECRET_DU_SITE';\nconst body = JSON.stringify($input.first().json.body);\nconst signature = $input.first().json.headers['x-maji-signature'] || '';\nconst expected = 'sha256=' + crypto.createHmac('sha256', SECRET).update(body).digest('hex');\nif (signature !== expected) {\n  throw new Error('Signature invalide — webhook rejeté');\n}\nreturn [{ json: $input.first().json.body }];"
+			},
+			"id": "verify-signature",
+			"name": "Vérifier signature",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [ 220, 0 ]
+		},
+		{
+			"parameters": {
+				"jsCode": "// Construit le message WhatsApp pour le gérant.\nconst o = $input.first().json.order;\nconst lines = o.items.map(i => `• ${i.qty}× ${i.name}${i.variation ? ' (' + i.variation + ')' : ''} — ${i.total} FCFA`).join('\\n');\nconst mode = o.fulfillment.mode === 'delivery' ? `Livraison — ${o.fulfillment.zone} (${o.fulfillment.fee} FCFA)` : 'Retrait sur place';\nconst text = `🍽 NOUVELLE COMMANDE n°${o.number}\\n\\n${lines}\\n\\nTotal : ${o.totals.total} ${o.totals.currency}\\n${mode}\\nClient : ${o.customer.name} — ${o.customer.phone}\\n${o.note ? 'Note : ' + o.note : ''}`;\nreturn [{ json: { text, phone: o.customer.phone, consent: o.customer.whatsapp_consent } }];"
+			},
+			"id": "build-message",
+			"name": "Composer le message",
+			"type": "n8n-nodes-base.code",
+			"typeVersion": 2,
+			"position": [ 440, 0 ]
+		},
+		{
+			"parameters": {
+				"method": "POST",
+				"url": "https://graph.facebook.com/v19.0/REMPLACER_PHONE_NUMBER_ID/messages",
+				"authentication": "genericCredentialType",
+				"genericAuthType": "httpHeaderAuth",
+				"sendBody": true,
+				"specifyBody": "json",
+				"jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"REMPLACER_NUMERO_GERANT\",\n  \"type\": \"text\",\n  \"text\": { \"body\": {{ JSON.stringify($json.text) }} }\n}",
+				"options": {}
+			},
+			"id": "notify-whatsapp",
+			"name": "Notifier le gérant (WhatsApp API)",
+			"type": "n8n-nodes-base.httpRequest",
+			"typeVersion": 4.2,
+			"position": [ 660, 0 ]
+		}
+	],
+	"connections": {
+		"Webhook commande": {
+			"main": [ [ { "node": "Vérifier signature", "type": "main", "index": 0 } ] ]
+		},
+		"Vérifier signature": {
+			"main": [ [ { "node": "Composer le message", "type": "main", "index": 0 } ] ]
+		},
+		"Composer le message": {
+			"main": [ [ { "node": "Notifier le gérant (WhatsApp API)", "type": "main", "index": 0 } ] ]
+		}
+	},
+	"settings": { "executionOrder": "v1" },
+	"pinData": {}
+}

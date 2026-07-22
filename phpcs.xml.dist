@@ -45,6 +45,7 @@
 		<properties>
 			<property name="custom_capabilities" type="array">
 				<element value="manage_maji"/>
+				<element value="edit_products"/>
 			</property>
 		</properties>
 	</rule>
