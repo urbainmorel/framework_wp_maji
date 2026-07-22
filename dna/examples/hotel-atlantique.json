@@ -1,0 +1,135 @@
+{
+	"schema": "maji-dna/1",
+	"meta": {
+		"site_slug": "hotel-atlantique",
+		"client": "Hôtel Atlantique",
+		"created_at": "2026-07-21"
+	},
+	"identity": {
+		"name": "Hôtel Atlantique",
+		"type": "hotel",
+		"phone": "+22921301020",
+		"whatsapp": "+22996010203",
+		"email": "contact@hotel-atlantique.bj",
+		"address": {
+			"street": "Boulevard de la Marina",
+			"district": "Haie Vive",
+			"city": "Cotonou",
+			"country": "BJ"
+		},
+		"hours": {
+			"mon": [ [ "07:00", "22:00" ] ],
+			"tue": [ [ "07:00", "22:00" ] ],
+			"wed": [ [ "07:00", "22:00" ] ],
+			"thu": [ [ "07:00", "22:00" ] ],
+			"fri": [ [ "07:00", "23:00" ] ],
+			"sat": [ [ "07:00", "23:00" ] ],
+			"sun": [ [ "07:00", "22:00" ] ]
+		},
+		"currency": "XOF",
+		"locale": "fr_FR",
+		"socials": {
+			"facebook": "https://facebook.com/hotelatlantique",
+			"instagram": "https://instagram.com/hotelatlantique",
+			"tiktok": ""
+		},
+		"features": {
+			"ordering": false,
+			"table_booking": false,
+			"delivery": false,
+			"pickup": false
+		},
+		"delivery_zones": []
+	},
+	"integrations": {
+		"n8n_order_url": "",
+		"n8n_reservation_url": ""
+	},
+	"design": {
+		"da": "da-editorial-sombre",
+		"font_pair": "fp-01",
+		"palette": {
+			"primary": "#0D1B2A",
+			"primary-contrast": "#FFFFFF",
+			"accent": "#C9A227",
+			"accent-contrast": "#141414",
+			"surface": "#0B0F14",
+			"ink": "#F3EFE6"
+		},
+		"radius_scale": "sm",
+		"spacing_mood": "aere",
+		"image_treatment": {
+			"hero_ratio": "16:9",
+			"card_ratio": "4:3",
+			"overlay": "dark",
+			"duotone": false
+		}
+	},
+	"structure": {
+		"header": "header-01",
+		"footer": "footer-01",
+		"nav_vocabulary": "hotel-experientiel",
+		"pages": [
+			{
+				"slug": "accueil",
+				"title": "Accueil",
+				"sections": [
+					"maji/hotel-hero-03",
+					"maji/hotel-chambres-01",
+					"maji/hotel-equipements-02",
+					"maji/commun-avis-02",
+					"maji/commun-localisation-01",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "chambres",
+				"title": "Séjourner",
+				"sections": [
+					"maji/hotel-chambres-02",
+					"maji/hotel-equipements-01",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "contact",
+				"title": "Nous trouver",
+				"sections": [
+					"maji/commun-localisation-01",
+					"maji/commun-faq-01",
+					"maji/commun-cta-01"
+				]
+			}
+		]
+	},
+	"content": {
+		"tone": "premium",
+		"facts": {
+			"quartier": "Haie Vive",
+			"annee": 2016,
+			"specialites": [ "vue sur l'océan", "petit-déjeuner local" ]
+		},
+		"texts": {
+			"content.texts.hero_tagline": "Face à l'Atlantique, un refuge élégant au cœur de Cotonou.",
+			"content.texts.chambres_intro": "Des chambres pensées pour le repos, du studio à la suite.",
+			"content.texts.cta_titre": "Votre séjour commence ici",
+			"content.texts.chambre_1_nom": "Chambre Océan",
+			"content.texts.chambre_1_description": "Lit king-size, vue mer, balcon privé.",
+			"content.texts.chambre_2_nom": "Suite Atlantique",
+			"content.texts.chambre_2_description": "Salon séparé, baignoire, service premium.",
+			"content.texts.avis_1_texte": "Un accueil chaleureux et une vue inoubliable sur l'océan.",
+			"content.texts.avis_1_auteur": "Mariam T., Abidjan",
+			"content.texts.avis_2_texte": "Le petit-déjeuner local est un délice, chambre impeccable.",
+			"content.texts.avis_2_auteur": "Jean-Marc D., Paris",
+			"content.texts.avis_3_texte": "Idéal pour un séjour d'affaires, Wi-Fi rapide et calme absolu.",
+			"content.texts.avis_3_auteur": "Aïcha S., Lagos",
+			"content.texts.faq_1_question": "À quelle heure est le check-in ?",
+			"content.texts.faq_1_reponse": "Le check-in est possible à partir de 13h, le check-out jusqu'à 12h.",
+			"content.texts.faq_2_question": "Proposez-vous une navette aéroport ?",
+			"content.texts.faq_2_reponse": "Oui, sur demande 24h/24 — contactez-nous sur WhatsApp pour réserver.",
+			"content.texts.faq_3_question": "Le petit-déjeuner est-il inclus ?",
+			"content.texts.faq_3_reponse": "Oui, le petit-déjeuner aux produits locaux est inclus dans toutes les chambres."
+		},
+		"seed": "demo-content/hotel-business"
+	}
+}

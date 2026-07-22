@@ -1,15 +1,16 @@
 /**
  * Éditeur du bloc maji/menu-grid (sans étape de build).
+ * @param {Object} wp Objet global WordPress.
  */
-( function ( wp ) {
+( function( wp ) {
 	'use strict';
 
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+	const el = wp.element.createElement;
+	const __ = wp.i18n.__;
 
 	wp.blocks.registerBlockType( 'maji/menu-grid', {
-		edit: function ( props ) {
-			var blockProps = wp.blockEditor.useBlockProps();
+		edit( props ) {
+			const blockProps = wp.blockEditor.useBlockProps();
 			return el(
 				'div',
 				blockProps,
@@ -24,7 +25,7 @@
 							min: 1,
 							max: 48,
 							value: props.attributes.count,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { count: value } );
 							},
 						} ),
@@ -33,14 +34,14 @@
 							min: 2,
 							max: 4,
 							value: props.attributes.columns,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { columns: value } );
 							},
 						} ),
 						el( wp.components.TextControl, {
 							label: __( 'Catégorie (slug)', 'maji-core' ),
 							value: props.attributes.category,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { category: value } );
 							},
 						} ),
@@ -53,7 +54,7 @@
 								{ value: 'epice', label: __( 'Épicé', 'maji-core' ) },
 								{ value: 'nouveau', label: __( 'Nouveau', 'maji-core' ) },
 							],
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { badge: value } );
 							},
 						} )
@@ -69,8 +70,8 @@
 				} )
 			);
 		},
-		save: function () {
+		save() {
 			return null;
 		},
 	} );
-} )( window.wp );
+}( window.wp ) );

@@ -1,0 +1,115 @@
+{
+	"media": {
+		"hero": { "file": "hero.webp", "alt": "Poulet braisé signature de Saveurs du Bénin" },
+		"gallery-1": { "file": "gallery-1.webp", "alt": "Salle du restaurant à Fidjrossè" },
+		"gallery-2": { "file": "gallery-2.webp", "alt": "Cuisine au feu de bois" },
+		"gallery-3": { "file": "card-1.webp", "alt": "Amiwo et poisson grillé" },
+		"gallery-4": { "file": "card-2.webp", "alt": "Terrasse du restaurant" },
+		"plat-1": { "file": "card-1.webp", "alt": "Poulet braisé entier" },
+		"plat-2": { "file": "card-2.webp", "alt": "Amiwo au poulet" },
+		"plat-3": { "file": "card-3.webp", "alt": "Poisson grillé du jour" },
+		"map": { "file": "map.webp", "alt": "Plan d'accès au restaurant Saveurs du Bénin" }
+	},
+	"rooms": [],
+	"dishes": [
+		{
+			"name": "Poulet braisé entier",
+			"description": "Mariné 12 h, braisé au feu de bois, servi avec alloco et sauce tomate maison.",
+			"price": "6500",
+			"category": "Plats",
+			"badges": [ "populaire" ],
+			"available": true,
+			"image": "plat-1"
+		},
+		{
+			"name": "Demi poulet braisé",
+			"description": "La même recette signature, en portion solo, avec attiéké ou alloco.",
+			"price": "3500",
+			"category": "Plats",
+			"badges": [ "populaire" ],
+			"available": true,
+			"image": "plat-1"
+		},
+		{
+			"name": "Amiwo au poulet",
+			"description": "Pâte de maïs rouge cuisinée au bouillon, poulet fermier, piment frais.",
+			"price": "3000",
+			"category": "Plats",
+			"badges": [ "epice" ],
+			"available": true,
+			"image": "plat-2"
+		},
+		{
+			"name": "Poisson grillé du jour",
+			"description": "Dorade ou bar selon l'arrivage du marché de Fidjrossè, grillé entier.",
+			"price": "5500",
+			"category": "Plats",
+			"badges": [],
+			"available": true,
+			"image": "plat-3"
+		},
+		{
+			"name": "Salade d'avocat et crevettes",
+			"description": "Avocats mûrs, crevettes sautées, vinaigrette citron-gingembre.",
+			"price": "2500",
+			"category": "Entrées",
+			"badges": [ "nouveau" ],
+			"available": true,
+			"image": "plat-2"
+		},
+		{
+			"name": "Aloko sauce piment",
+			"description": "Bananes plantains dorées, sauce piment maison.",
+			"price": "1500",
+			"category": "Entrées",
+			"badges": [],
+			"available": true,
+			"image": "plat-3"
+		},
+		{
+			"name": "Beignets de haricot (accra)",
+			"description": "Croustillants dehors, moelleux dedans, servis brûlants.",
+			"price": "1200",
+			"category": "Entrées",
+			"badges": [ "epice" ],
+			"available": true,
+			"image": "plat-1"
+		},
+		{
+			"name": "Dègue de mil",
+			"description": "Dessert lacté au mil et yaourt frais, touche de vanille.",
+			"price": "1500",
+			"category": "Desserts",
+			"badges": [],
+			"available": true,
+			"image": "plat-2"
+		},
+		{
+			"name": "Ananas rôti à la cannelle",
+			"description": "Ananas pain de sucre rôti, sirop léger à la cannelle.",
+			"price": "1800",
+			"category": "Desserts",
+			"badges": [ "nouveau" ],
+			"available": true,
+			"image": "plat-3"
+		},
+		{
+			"name": "Bissap frais",
+			"description": "Hibiscus infusé maison, menthe et gingembre.",
+			"price": "1000",
+			"category": "Boissons",
+			"badges": [ "populaire" ],
+			"available": true,
+			"image": "plat-1"
+		},
+		{
+			"name": "Jus d'ananas pressé",
+			"description": "Pressé à la commande, sans sucre ajouté.",
+			"price": "1200",
+			"category": "Boissons",
+			"badges": [],
+			"available": true,
+			"image": "plat-2"
+		}
+	]
+}

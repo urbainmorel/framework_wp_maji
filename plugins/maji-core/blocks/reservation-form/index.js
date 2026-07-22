@@ -1,15 +1,16 @@
 /**
  * Éditeur du bloc maji/reservation-form (sans étape de build).
+ * @param {Object} wp Objet global WordPress.
  */
-( function ( wp ) {
+( function( wp ) {
 	'use strict';
 
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+	const el = wp.element.createElement;
+	const __ = wp.i18n.__;
 
 	wp.blocks.registerBlockType( 'maji/reservation-form', {
-		edit: function ( props ) {
-			var blockProps = wp.blockEditor.useBlockProps( {
+		edit( props ) {
+			const blockProps = wp.blockEditor.useBlockProps( {
 				className: 'maji-form-placeholder',
 			} );
 			return el(
@@ -30,7 +31,7 @@
 						{
 							label: __( 'Proposer le choix de la chambre', 'maji-core' ),
 							checked: props.attributes.showRoomPicker,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { showRoomPicker: value } );
 							},
 						}
@@ -38,8 +39,8 @@
 				)
 			);
 		},
-		save: function () {
+		save() {
 			return null;
 		},
 	} );
-} )( window.wp );
+}( window.wp ) );

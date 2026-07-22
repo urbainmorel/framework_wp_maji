@@ -1,16 +1,17 @@
 /**
  * Éditeur du bloc maji/establishment-info (sans étape de build).
+ * @param {Object} wp Objet global WordPress.
  */
-( function ( wp ) {
+( function( wp ) {
 	'use strict';
 
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+	const el = wp.element.createElement;
+	const __ = wp.i18n.__;
 
 	wp.blocks.registerBlockType( 'maji/establishment-info', {
-		edit: function ( props ) {
-			var blockProps = wp.blockEditor.useBlockProps();
-			var labels = {
+		edit( props ) {
+			const blockProps = wp.blockEditor.useBlockProps();
+			const labels = {
 				coordonnees: __( 'Coordonnées complètes', 'maji-core' ),
 				phone: __( 'Téléphone', 'maji-core' ),
 				adresse: __( 'Adresse', 'maji-core' ),
@@ -28,10 +29,10 @@
 						el( wp.components.SelectControl, {
 							label: __( 'Contenu affiché', 'maji-core' ),
 							value: props.attributes.variant,
-							options: Object.keys( labels ).map( function ( key ) {
+							options: Object.keys( labels ).map( function( key ) {
 								return { value: key, label: labels[ key ] };
 							} ),
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { variant: value } );
 							},
 						} )
@@ -44,8 +45,8 @@
 				)
 			);
 		},
-		save: function () {
+		save() {
 			return null;
 		},
 	} );
-} )( window.wp );
+}( window.wp ) );

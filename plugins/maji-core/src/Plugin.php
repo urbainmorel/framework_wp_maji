@@ -107,6 +107,16 @@ final class Plugin {
 			$modules[] = new Restaurant\Restaurant( $this->settings );
 		}
 
+		$modules[] = new Update\Updater();
+
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			\WP_CLI::add_command( 'maji dna', Cli\DnaCli::class );
+			\WP_CLI::add_command( 'maji apply-dna', [ new Cli\MajiCli(), 'apply_dna' ] );
+			\WP_CLI::add_command( 'maji import-content', [ new Cli\MajiCli(), 'import_content' ] );
+			\WP_CLI::add_command( 'maji export-model', [ new Cli\MajiCli(), 'export_model' ] );
+			\WP_CLI::add_command( 'maji provision', [ new Cli\MajiCli(), 'provision' ] );
+		}
+
 		foreach ( $modules as $module ) {
 			$this->modules[ get_class( $module ) ] = $module;
 			$module->register();

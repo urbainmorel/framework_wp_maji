@@ -1,0 +1,88 @@
+{
+	"media": {
+		"hero": { "file": "hero.webp", "alt": "Salle épurée du restaurant L'Ardoise" },
+		"gallery-1": { "file": "gallery-1.webp", "alt": "Dressage d'un plat au comptoir" },
+		"gallery-2": { "file": "gallery-2.webp", "alt": "Terrasse du restaurant à Cocody" },
+		"gallery-3": { "file": "card-1.webp", "alt": "Thon mi-cuit sauce ivoire" },
+		"gallery-4": { "file": "card-2.webp", "alt": "Dessert signature à l'ananas" },
+		"plat-1": { "file": "card-1.webp", "alt": "Thon mi-cuit sauce ivoire" },
+		"plat-2": { "file": "card-2.webp", "alt": "Poulet fermier aux épices douces" },
+		"plat-3": { "file": "card-3.webp", "alt": "Légumes du marché rôtis" },
+		"map": { "file": "map.webp", "alt": "Plan d'accès au restaurant L'Ardoise" }
+	},
+	"rooms": [],
+	"dishes": [
+		{
+			"name": "Thon mi-cuit, sauce ivoire",
+			"description": "Thon de San-Pédro juste saisi, sauce ivoire au gingembre, riz noir.",
+			"price": "9500",
+			"category": "Plats",
+			"badges": [ "populaire" ],
+			"available": true,
+			"image": "plat-1"
+		},
+		{
+			"name": "Poulet fermier, épices douces",
+			"description": "Suprême de poulet de Bingerville, jus corsé, purée d'igname fumée.",
+			"price": "8500",
+			"category": "Plats",
+			"badges": [],
+			"available": true,
+			"image": "plat-2"
+		},
+		{
+			"name": "Légumes du marché rôtis",
+			"description": "Assiette végétarienne : légumes de Cocody rôtis, condiment arachide.",
+			"price": "6500",
+			"category": "Plats",
+			"badges": [ "nouveau" ],
+			"available": true,
+			"image": "plat-3"
+		},
+		{
+			"name": "Tartare d'avocat et mangue",
+			"description": "Avocat, mangue verte, huile de sésame, tuile de riz.",
+			"price": "4500",
+			"category": "Entrées",
+			"badges": [],
+			"available": true,
+			"image": "plat-3"
+		},
+		{
+			"name": "Velouté de patate douce",
+			"description": "Patate douce rôtie, lait de coco, éclats de cajou torréfiés.",
+			"price": "4000",
+			"category": "Entrées",
+			"badges": [ "populaire" ],
+			"available": true,
+			"image": "plat-2"
+		},
+		{
+			"name": "Ananas rôti, glace coco",
+			"description": "Ananas de Bonoua rôti entier, caramel épicé, glace coco maison.",
+			"price": "3500",
+			"category": "Desserts",
+			"badges": [ "populaire" ],
+			"available": true,
+			"image": "plat-2"
+		},
+		{
+			"name": "Moelleux chocolat-cajou",
+			"description": "Chocolat ivoirien 70 %, cœur coulant, pralin de cajou.",
+			"price": "4000",
+			"category": "Desserts",
+			"badges": [],
+			"available": true,
+			"image": "plat-1"
+		},
+		{
+			"name": "Cocktail gingembre-passion",
+			"description": "Gingembre frais pressé, fruit de la passion, sans alcool.",
+			"price": "2500",
+			"category": "Boissons",
+			"badges": [ "nouveau" ],
+			"available": true,
+			"image": "plat-3"
+		}
+	]
+}

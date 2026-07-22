@@ -5,8 +5,7 @@
 	"description": "MAJI Core plugin blocks and admin assets.",
 	"license": "GPL-2.0-or-later",
 	"scripts": {
-		"build": "wp-scripts build --webpack-copy-php --source-path=blocks --output-path=build",
-		"start": "wp-scripts start --webpack-copy-php --source-path=blocks --output-path=build",
+		"build": "echo 'Blocs sans étape de build (vanilla JS, voir docs/DECISIONS.md)'",
 		"lint:js": "wp-scripts lint-js blocks"
 	},
 	"devDependencies": {

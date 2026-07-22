@@ -1,0 +1,51 @@
+{
+	"media": {
+		"hero": { "file": "hero.webp", "alt": "Jardin tropical de la Villa Karité" },
+		"gallery-1": { "file": "gallery-1.webp", "alt": "Terrasse ombragée de la villa" },
+		"gallery-2": { "file": "gallery-2.webp", "alt": "Piscine naturelle au milieu du jardin" },
+		"gallery-3": { "file": "card-1.webp", "alt": "Chambre Karité et sa terrasse" },
+		"gallery-4": { "file": "card-2.webp", "alt": "Table d'hôtes au coucher du soleil" },
+		"chambre-1": { "file": "card-1.webp", "alt": "Chambre Karité, boiseries et hamac" },
+		"chambre-2": { "file": "card-2.webp", "alt": "Chambre Indigo, textiles teints à la main" },
+		"service-1": { "file": "card-1.webp", "alt": "Table d'hôtes aux produits du jardin" },
+		"service-2": { "file": "card-2.webp", "alt": "Espace bien-être au beurre de karité" },
+		"service-3": { "file": "card-3.webp", "alt": "Excursion sur la Route des Pêches" },
+		"map": { "file": "map.webp", "alt": "Plan d'accès à la Villa Karité" }
+	},
+	"rooms": [
+		{
+			"title": "Chambre Karité",
+			"content": "<!-- wp:paragraph --><p>Boiseries chaleureuses, terrasse privée sur le jardin et hamac pour la sieste. Salle d'eau en tadelakt.</p><!-- /wp:paragraph -->",
+			"excerpt": "Terrasse sur jardin, hamac privé.",
+			"price_from": 45000,
+			"capacity": 2,
+			"size_sqm": 24,
+			"featured": true,
+			"amenities": [ "Terrasse", "Ventilateur", "Moustiquaire", "Petit-déjeuner" ],
+			"image": "chambre-1"
+		},
+		{
+			"title": "Chambre Indigo",
+			"content": "<!-- wp:paragraph --><p>Textiles teints à la main par les artisanes d'Abomey, douche extérieure de pierre sous les palmiers.</p><!-- /wp:paragraph -->",
+			"excerpt": "Douche extérieure sous les palmiers.",
+			"price_from": 48000,
+			"capacity": 2,
+			"size_sqm": 26,
+			"featured": true,
+			"amenities": [ "Douche extérieure", "Ventilateur", "Moustiquaire", "Petit-déjeuner" ],
+			"image": "chambre-2"
+		},
+		{
+			"title": "Suite Baobab",
+			"content": "<!-- wp:paragraph --><p>La plus grande chambre de la villa : lit à baldaquin, salon de lecture et vue sur le vieux baobab du jardin.</p><!-- /wp:paragraph -->",
+			"excerpt": "Lit à baldaquin, salon de lecture.",
+			"price_from": 65000,
+			"capacity": 3,
+			"size_sqm": 38,
+			"featured": false,
+			"amenities": [ "Salon", "Climatisation", "Moustiquaire", "Petit-déjeuner" ],
+			"image": "chambre-1"
+		}
+	],
+	"dishes": []
+}

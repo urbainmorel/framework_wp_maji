@@ -1,0 +1,136 @@
+{
+	"schema": "maji-dna/1",
+	"meta": {
+		"site_slug": "saveurs-du-benin",
+		"client": "Saveurs du Bénin",
+		"created_at": "2026-07-21"
+	},
+	"identity": {
+		"name": "Saveurs du Bénin",
+		"type": "restaurant",
+		"phone": "+22921401020",
+		"whatsapp": "+22997020304",
+		"email": "bonjour@saveursdubenin.bj",
+		"address": {
+			"street": "Rue des Cocotiers",
+			"district": "Fidjrossè",
+			"city": "Cotonou",
+			"country": "BJ"
+		},
+		"hours": {
+			"mon": [],
+			"tue": [ [ "11:00", "15:00" ], [ "18:30", "22:30" ] ],
+			"wed": [ [ "11:00", "15:00" ], [ "18:30", "22:30" ] ],
+			"thu": [ [ "11:00", "15:00" ], [ "18:30", "22:30" ] ],
+			"fri": [ [ "11:00", "15:00" ], [ "18:30", "23:00" ] ],
+			"sat": [ [ "11:00", "23:00" ] ],
+			"sun": [ [ "11:00", "16:00" ] ]
+		},
+		"currency": "XOF",
+		"locale": "fr_FR",
+		"socials": {
+			"facebook": "https://facebook.com/saveursdubenin",
+			"instagram": "https://instagram.com/saveursdubenin",
+			"tiktok": "https://tiktok.com/@saveursdubenin"
+		},
+		"features": {
+			"ordering": true,
+			"table_booking": true,
+			"delivery": true,
+			"pickup": true
+		},
+		"delivery_zones": [
+			{ "name": "Fidjrossè", "fee": 500 },
+			{ "name": "Haie Vive", "fee": 700 },
+			{ "name": "Cadjehoun", "fee": 1000 }
+		]
+	},
+	"integrations": {
+		"n8n_order_url": "",
+		"n8n_reservation_url": ""
+	},
+	"design": {
+		"da": "da-artisanal-texture",
+		"font_pair": "fp-04",
+		"palette": {
+			"primary": "#8A3B12",
+			"accent": "#3F5E3A"
+		},
+		"radius_scale": "sm",
+		"spacing_mood": "normal",
+		"image_treatment": {
+			"hero_ratio": "4:3",
+			"card_ratio": "1:1",
+			"overlay": "primary",
+			"duotone": false
+		}
+	},
+	"structure": {
+		"header": "header-04",
+		"footer": "footer-03",
+		"nav_vocabulary": "resto-convivial",
+		"pages": [
+			{
+				"slug": "accueil",
+				"title": "Accueil",
+				"sections": [
+					"maji/resto-hero-02",
+					"maji/resto-populaires-01",
+					"maji/resto-menu-02",
+					"maji/resto-livraison-01",
+					"maji/commun-avis-01",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "menu",
+				"title": "La Carte",
+				"sections": [
+					"maji/resto-menu-03",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "contact",
+				"title": "Venir nous voir",
+				"sections": [
+					"maji/commun-localisation-01",
+					"maji/commun-faq-01",
+					"maji/commun-cta-01"
+				]
+			}
+		]
+	},
+	"content": {
+		"tone": "local",
+		"facts": {
+			"quartier": "Fidjrossè",
+			"annee": 2019,
+			"specialites": [ "poulet braisé", "amiwo", "poisson grillé" ]
+		},
+		"texts": {
+			"content.texts.hero_tagline": "La vraie cuisine béninoise, braisée au feu de bois.",
+			"content.texts.menu_intro": "Des recettes de famille, des produits du marché de Fidjrossè.",
+			"content.texts.cta_titre": "Une petite faim ?",
+			"content.texts.zone_1_nom": "Fidjrossè",
+			"content.texts.zone_1_frais": "500",
+			"content.texts.zone_2_nom": "Haie Vive",
+			"content.texts.zone_2_frais": "700",
+			"content.texts.zone_3_nom": "Cadjehoun",
+			"content.texts.zone_3_frais": "1 000",
+			"content.texts.avis_1_texte": "Le meilleur poulet braisé de Cotonou, tout simplement.",
+			"content.texts.avis_1_auteur": "Romaric H., Cotonou",
+			"content.texts.avis_2_texte": "Livraison rapide et plats encore chauds. Je recommande !",
+			"content.texts.avis_2_auteur": "Estelle K., Fidjrossè",
+			"content.texts.avis_3_texte": "L'amiwo comme chez ma grand-mère. On revient chaque semaine.",
+			"content.texts.avis_3_auteur": "Serge A., Calavi",
+			"content.texts.faq_1_question": "Livrez-vous dans mon quartier ?",
+			"content.texts.faq_1_reponse": "Nous livrons Fidjrossè, Haie Vive et Cadjehoun. Écrivez-nous sur WhatsApp pour les autres zones.",
+			"content.texts.faq_2_question": "Comment payer ma commande ?",
+			"content.texts.faq_2_reponse": "Le paiement se fait à la livraison, en espèces ou Mobile Money.",
+			"content.texts.faq_3_question": "Peut-on réserver une table ?",
+			"content.texts.faq_3_reponse": "Oui, réservez en ligne ou sur WhatsApp — nous confirmons sous quelques minutes."
+		},
+		"seed": "demo-content/restaurant-africain"
+	}
+}

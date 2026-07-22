@@ -1,0 +1,134 @@
+{
+	"schema": "maji-dna/1",
+	"meta": {
+		"site_slug": "villa-karite",
+		"client": "Villa Karité",
+		"created_at": "2026-07-21"
+	},
+	"identity": {
+		"name": "Villa Karité",
+		"type": "hotel",
+		"phone": "+22921351020",
+		"whatsapp": "+22995040506",
+		"email": "sejour@villakarite.bj",
+		"address": {
+			"street": "Route des Pêches",
+			"district": "Avlékété",
+			"city": "Ouidah",
+			"country": "BJ"
+		},
+		"hours": {
+			"mon": [ [ "08:00", "20:00" ] ],
+			"tue": [ [ "08:00", "20:00" ] ],
+			"wed": [ [ "08:00", "20:00" ] ],
+			"thu": [ [ "08:00", "20:00" ] ],
+			"fri": [ [ "08:00", "21:00" ] ],
+			"sat": [ [ "08:00", "21:00" ] ],
+			"sun": [ [ "08:00", "20:00" ] ]
+		},
+		"currency": "XOF",
+		"locale": "fr_FR",
+		"socials": {
+			"facebook": "",
+			"instagram": "https://instagram.com/villakarite",
+			"tiktok": ""
+		},
+		"features": {
+			"ordering": false,
+			"table_booking": false,
+			"delivery": false,
+			"pickup": false
+		},
+		"delivery_zones": []
+	},
+	"integrations": {
+		"n8n_order_url": "",
+		"n8n_reservation_url": ""
+	},
+	"design": {
+		"da": "da-artisanal-texture",
+		"font_pair": "fp-05",
+		"palette": {
+			"primary": "#6B4226",
+			"accent": "#2F4A3B"
+		},
+		"radius_scale": "md",
+		"spacing_mood": "normal",
+		"image_treatment": {
+			"hero_ratio": "4:3",
+			"card_ratio": "3:4",
+			"overlay": "none",
+			"duotone": false
+		}
+	},
+	"structure": {
+		"header": "header-03",
+		"footer": "footer-02",
+		"nav_vocabulary": "hotel-classique",
+		"pages": [
+			{
+				"slug": "accueil",
+				"title": "Accueil",
+				"sections": [
+					"maji/hotel-hero-05",
+					"maji/hotel-services-01",
+					"maji/hotel-chambres-02",
+					"maji/commun-galerie-01",
+					"maji/commun-avis-01",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "chambres",
+				"title": "Chambres",
+				"sections": [
+					"maji/hotel-chambres-01",
+					"maji/hotel-equipements-01",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "contact",
+				"title": "Contact",
+				"sections": [
+					"maji/commun-localisation-01",
+					"maji/commun-faq-01",
+					"maji/commun-cta-01"
+				]
+			}
+		]
+	},
+	"content": {
+		"tone": "familial",
+		"facts": {
+			"quartier": "Avlékété",
+			"annee": 2021,
+			"specialites": [ "maison d'hôtes", "jardin tropical", "plage à 5 minutes" ]
+		},
+		"texts": {
+			"content.texts.hero_tagline": "Une maison d'hôtes de charme entre plage et jardin tropical, à Ouidah.",
+			"content.texts.chambres_intro": "Cinq chambres, chacune avec son caractère, toutes avec vue sur le jardin.",
+			"content.texts.cta_titre": "Réservez votre parenthèse à Ouidah",
+			"content.texts.chambre_1_nom": "Chambre Karité",
+			"content.texts.chambre_1_description": "Boiseries chaleureuses, terrasse sur jardin, hamac privé.",
+			"content.texts.chambre_2_nom": "Chambre Indigo",
+			"content.texts.chambre_2_description": "Textiles teints à la main, douche extérieure de pierre.",
+			"content.texts.service_1_description": "Table d'hôtes aux produits du jardin, sur réservation.",
+			"content.texts.service_2_description": "Massages et soins au beurre de karité local.",
+			"content.texts.service_3_description": "Excursions : route des esclaves, village lacustre, plages sauvages.",
+			"content.texts.avis_1_texte": "Un havre de paix, des hôtes adorables et un jardin magnifique.",
+			"content.texts.avis_1_auteur": "Claire M., Bruxelles",
+			"content.texts.avis_2_texte": "La table d'hôtes vaut à elle seule le détour. On reviendra !",
+			"content.texts.avis_2_auteur": "Kofi A., Accra",
+			"content.texts.avis_3_texte": "Chambre superbe, plage à pied, accueil aux petits soins.",
+			"content.texts.avis_3_auteur": "Nadia B., Cotonou",
+			"content.texts.faq_1_question": "Êtes-vous loin de la plage ?",
+			"content.texts.faq_1_reponse": "La plage d'Avlékété est à 5 minutes à pied par le sentier du jardin.",
+			"content.texts.faq_2_question": "Acceptez-vous les enfants ?",
+			"content.texts.faq_2_reponse": "Bien sûr : lit bébé gratuit et menu enfant à la table d'hôtes.",
+			"content.texts.faq_3_question": "Comment venir depuis Cotonou ?",
+			"content.texts.faq_3_reponse": "Comptez 45 minutes par la Route des Pêches ; nous organisons aussi votre transfert."
+		},
+		"seed": "demo-content/hotel-boutique"
+	}
+}

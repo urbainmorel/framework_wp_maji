@@ -1,0 +1,136 @@
+{
+	"schema": "maji-dna/1",
+	"meta": {
+		"site_slug": "l-ardoise-abidjan",
+		"client": "L'Ardoise",
+		"created_at": "2026-07-21"
+	},
+	"identity": {
+		"name": "L'Ardoise",
+		"type": "restaurant",
+		"phone": "+2252722401020",
+		"whatsapp": "+2250701020304",
+		"email": "table@lardoise.ci",
+		"address": {
+			"street": "Rue des Jardins",
+			"district": "Cocody Danga",
+			"city": "Abidjan",
+			"country": "CI"
+		},
+		"hours": {
+			"mon": [],
+			"tue": [ [ "12:00", "14:30" ], [ "19:00", "22:30" ] ],
+			"wed": [ [ "12:00", "14:30" ], [ "19:00", "22:30" ] ],
+			"thu": [ [ "12:00", "14:30" ], [ "19:00", "22:30" ] ],
+			"fri": [ [ "12:00", "14:30" ], [ "19:00", "23:00" ] ],
+			"sat": [ [ "19:00", "23:00" ] ],
+			"sun": [ [ "12:00", "15:00" ] ]
+		},
+		"currency": "XOF",
+		"locale": "fr_FR",
+		"socials": {
+			"facebook": "https://facebook.com/lardoiseabidjan",
+			"instagram": "https://instagram.com/lardoiseabidjan",
+			"tiktok": ""
+		},
+		"features": {
+			"ordering": true,
+			"table_booking": true,
+			"delivery": true,
+			"pickup": true
+		},
+		"delivery_zones": [
+			{ "name": "Cocody Danga", "fee": 1000 },
+			{ "name": "Plateau", "fee": 1500 },
+			{ "name": "Marcory", "fee": 2000 }
+		]
+	},
+	"integrations": {
+		"n8n_order_url": "",
+		"n8n_reservation_url": ""
+	},
+	"design": {
+		"da": "da-solaire-minimal",
+		"font_pair": "fp-03",
+		"palette": {
+			"primary": "#0E7C66",
+			"accent": "#C2410C",
+			"accent-contrast": "#FFFFFF"
+		},
+		"radius_scale": "lg",
+		"spacing_mood": "aere",
+		"image_treatment": {
+			"hero_ratio": "16:9",
+			"card_ratio": "1:1",
+			"overlay": "none",
+			"duotone": false
+		}
+	},
+	"structure": {
+		"header": "header-02",
+		"footer": "footer-01",
+		"nav_vocabulary": "resto-classique",
+		"pages": [
+			{
+				"slug": "accueil",
+				"title": "Accueil",
+				"sections": [
+					"maji/resto-hero-06",
+					"maji/resto-menu-01",
+					"maji/commun-avis-02",
+					"maji/resto-livraison-01",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "menu",
+				"title": "Menu",
+				"sections": [
+					"maji/resto-menu-03",
+					"maji/commun-cta-01"
+				]
+			},
+			{
+				"slug": "contact",
+				"title": "Contact",
+				"sections": [
+					"maji/commun-localisation-01",
+					"maji/commun-faq-01",
+					"maji/commun-cta-01"
+				]
+			}
+		]
+	},
+	"content": {
+		"tone": "premium",
+		"facts": {
+			"quartier": "Cocody Danga",
+			"annee": 2022,
+			"specialites": [ "cuisine de marché", "carte courte", "vins choisis" ]
+		},
+		"texts": {
+			"content.texts.hero_tagline": "Cuisine de marché, carte courte, produits ivoiriens sublimés.",
+			"content.texts.menu_intro": "La carte change chaque semaine au rythme du marché de Cocody.",
+			"content.texts.cta_titre": "Votre table vous attend",
+			"content.texts.zone_1_nom": "Cocody Danga",
+			"content.texts.zone_1_frais": "1 000",
+			"content.texts.zone_2_nom": "Plateau",
+			"content.texts.zone_2_frais": "1 500",
+			"content.texts.zone_3_nom": "Marcory",
+			"content.texts.zone_3_frais": "2 000",
+			"content.texts.avis_1_texte": "Une carte courte mais parfaite : chaque plat est une évidence.",
+			"content.texts.avis_1_auteur": "Fatou C., Abidjan",
+			"content.texts.avis_2_texte": "Le thon mi-cuit sauce ivoire est à tomber. Service impeccable.",
+			"content.texts.avis_2_auteur": "Olivier R., Abidjan",
+			"content.texts.avis_3_texte": "Enfin une table qui ose revisiter nos classiques avec finesse.",
+			"content.texts.avis_3_auteur": "Aminata D., Grand-Bassam",
+			"content.texts.faq_1_question": "Faut-il réserver ?",
+			"content.texts.faq_1_reponse": "Fortement conseillé le week-end — réservez en ligne ou sur WhatsApp.",
+			"content.texts.faq_2_question": "Livrez-vous le déjeuner ?",
+			"content.texts.faq_2_reponse": "Oui, du mardi au vendredi de 12h à 14h30 sur Cocody, Plateau et Marcory.",
+			"content.texts.faq_3_question": "Proposez-vous des plats végétariens ?",
+			"content.texts.faq_3_reponse": "Chaque semaine, la carte compte au moins deux plats végétariens de saison."
+		},
+		"seed": "demo-content/restaurant-premium"
+	}
+}

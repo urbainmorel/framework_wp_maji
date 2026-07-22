@@ -1,15 +1,16 @@
 /**
  * Éditeur du bloc maji/whatsapp-button (sans étape de build).
+ * @param {Object} wp Objet global WordPress.
  */
-( function ( wp ) {
+( function( wp ) {
 	'use strict';
 
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+	const el = wp.element.createElement;
+	const __ = wp.i18n.__;
 
 	wp.blocks.registerBlockType( 'maji/whatsapp-button', {
-		edit: function ( props ) {
-			var blockProps = wp.blockEditor.useBlockProps();
+		edit( props ) {
+			const blockProps = wp.blockEditor.useBlockProps();
 			return el(
 				'div',
 				blockProps,
@@ -28,21 +29,21 @@
 								{ value: 'room', label: __( 'Chambre', 'maji-core' ) },
 								{ value: 'booking', label: __( 'Réservation de table', 'maji-core' ) },
 							],
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { context: value } );
 							},
 						} ),
 						el( wp.components.TextControl, {
 							label: __( 'Élément (plat, chambre…)', 'maji-core' ),
 							value: props.attributes.item,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { item: value } );
 							},
 						} ),
 						el( wp.components.TextControl, {
 							label: __( 'Libellé du bouton', 'maji-core' ),
 							value: props.attributes.label,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { label: value } );
 							},
 						} )
@@ -55,8 +56,8 @@
 				)
 			);
 		},
-		save: function () {
+		save() {
 			return null;
 		},
 	} );
-} )( window.wp );
+}( window.wp ) );

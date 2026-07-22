@@ -1,0 +1,62 @@
+{
+	"media": {
+		"hero": { "file": "hero.webp", "alt": "Façade de l'Hôtel Atlantique au coucher du soleil" },
+		"gallery-1": { "file": "gallery-1.webp", "alt": "Piscine et terrasse de l'hôtel" },
+		"gallery-2": { "file": "gallery-2.webp", "alt": "Hall d'accueil de l'hôtel" },
+		"gallery-3": { "file": "card-1.webp", "alt": "Chambre Océan avec vue mer" },
+		"gallery-4": { "file": "card-2.webp", "alt": "Restaurant de l'hôtel" },
+		"chambre-1": { "file": "card-1.webp", "alt": "Chambre Océan avec lit king-size" },
+		"chambre-2": { "file": "card-2.webp", "alt": "Suite Atlantique avec salon" },
+		"service-1": { "file": "card-1.webp", "alt": "Salle du restaurant" },
+		"service-2": { "file": "card-2.webp", "alt": "Salle de réunion équipée" },
+		"service-3": { "file": "card-3.webp", "alt": "Espace événements de l'hôtel" },
+		"map": { "file": "map.webp", "alt": "Plan d'accès à l'Hôtel Atlantique" }
+	},
+	"rooms": [
+		{
+			"title": "Chambre Standard",
+			"content": "<!-- wp:paragraph --><p>Une chambre confortable et lumineuse, idéale pour les voyageurs d'affaires : lit queen-size, bureau, climatisation silencieuse et Wi-Fi fibre.</p><!-- /wp:paragraph -->",
+			"excerpt": "Confort essentiel, calme garanti.",
+			"price_from": 35000,
+			"capacity": 2,
+			"size_sqm": 20,
+			"featured": false,
+			"amenities": [ "Wi-Fi", "Climatisation", "Bureau" ],
+			"image": "chambre-1"
+		},
+		{
+			"title": "Chambre Océan",
+			"content": "<!-- wp:paragraph --><p>Face à l'Atlantique : lit king-size, balcon privé et petit-déjeuner local inclus. Notre chambre la plus demandée.</p><!-- /wp:paragraph -->",
+			"excerpt": "Vue mer, balcon privé.",
+			"price_from": 55000,
+			"capacity": 2,
+			"size_sqm": 28,
+			"featured": true,
+			"amenities": [ "Wi-Fi", "Climatisation", "Vue mer", "Balcon" ],
+			"image": "chambre-1"
+		},
+		{
+			"title": "Suite Atlantique",
+			"content": "<!-- wp:paragraph --><p>Salon séparé, baignoire, dressing et service premium. L'adresse des grandes occasions à Cotonou.</p><!-- /wp:paragraph -->",
+			"excerpt": "L'excellence face à l'océan.",
+			"price_from": 95000,
+			"capacity": 3,
+			"size_sqm": 45,
+			"featured": true,
+			"amenities": [ "Wi-Fi", "Climatisation", "Vue mer", "Baignoire", "Salon" ],
+			"image": "chambre-2"
+		},
+		{
+			"title": "Chambre Familiale",
+			"content": "<!-- wp:paragraph --><p>Deux lits doubles, espace de jeu et frigo : pensée pour les familles en escale ou en vacances.</p><!-- /wp:paragraph -->",
+			"excerpt": "L'espace qu'il faut pour toute la famille.",
+			"price_from": 65000,
+			"capacity": 4,
+			"size_sqm": 35,
+			"featured": false,
+			"amenities": [ "Wi-Fi", "Climatisation", "Frigo" ],
+			"image": "chambre-2"
+		}
+	],
+	"dishes": []
+}

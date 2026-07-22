@@ -1,0 +1,13 @@
+{
+	"root": true,
+	"extends": [ "plugin:@wordpress/eslint-plugin/esnext" ],
+	"env": {
+		"browser": true
+	},
+	"globals": {
+		"wp": "readonly"
+	},
+	"rules": {
+		"no-console": "error"
+	}
+}

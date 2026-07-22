@@ -1,15 +1,16 @@
 /**
  * Éditeur du bloc maji/rooms-grid (sans étape de build).
+ * @param {Object} wp Objet global WordPress.
  */
-( function ( wp ) {
+( function( wp ) {
 	'use strict';
 
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+	const el = wp.element.createElement;
+	const __ = wp.i18n.__;
 
 	wp.blocks.registerBlockType( 'maji/rooms-grid', {
-		edit: function ( props ) {
-			var blockProps = wp.blockEditor.useBlockProps();
+		edit( props ) {
+			const blockProps = wp.blockEditor.useBlockProps();
 			return el(
 				'div',
 				blockProps,
@@ -24,7 +25,7 @@
 							min: 1,
 							max: 24,
 							value: props.attributes.count,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { count: value } );
 							},
 						} ),
@@ -33,21 +34,21 @@
 							min: 1,
 							max: 4,
 							value: props.attributes.columns,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { columns: value } );
 							},
 						} ),
 						el( wp.components.TextControl, {
 							label: __( 'Filtrer par équipement (slug)', 'maji-core' ),
 							value: props.attributes.amenity,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { amenity: value } );
 							},
 						} ),
 						el( wp.components.ToggleControl, {
 							label: __( 'Chambres mises en avant uniquement', 'maji-core' ),
 							checked: props.attributes.featuredOnly,
-							onChange: function ( value ) {
+							onChange( value ) {
 								props.setAttributes( { featuredOnly: value } );
 							},
 						} )
@@ -63,8 +64,8 @@
 				} )
 			);
 		},
-		save: function () {
+		save() {
 			return null;
 		},
 	} );
-} )( window.wp );
+}( window.wp ) );

@@ -1,15 +1,16 @@
 /**
  * Éditeur du bloc maji/table-booking-form (sans étape de build).
+ * @param {Object} wp Objet global WordPress.
  */
-( function ( wp ) {
+( function( wp ) {
 	'use strict';
 
-	var el = wp.element.createElement;
-	var __ = wp.i18n.__;
+	const el = wp.element.createElement;
+	const __ = wp.i18n.__;
 
 	wp.blocks.registerBlockType( 'maji/table-booking-form', {
-		edit: function () {
-			var blockProps = wp.blockEditor.useBlockProps( {
+		edit() {
+			const blockProps = wp.blockEditor.useBlockProps( {
 				className: 'maji-form-placeholder',
 			} );
 			return el(
@@ -25,8 +26,8 @@
 				} )
 			);
 		},
-		save: function () {
+		save() {
 			return null;
 		},
 	} );
-} )( window.wp );
+}( window.wp ) );
