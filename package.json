@@ -1,0 +1,19 @@
+{
+  "name": "maji-wordpress-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MAJI WordPress site factory for hotels and restaurants (West Africa).",
+  "license": "GPL-2.0-or-later",
+  "workspaces": [
+    "plugins/maji-core"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "lint:js": "npm run lint:js --workspaces --if-present",
+    "start": "wp-env start",
+    "stop": "wp-env stop"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^10.10.0"
+  }
+}
