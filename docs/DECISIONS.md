@@ -43,3 +43,19 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
 - **`composition_hash` remplace `section_order_hash`** : le hash intègre désormais l'ordre des sections de l'accueil **et** la variante `section_style`, pour distinguer deux accueils au même ordre mais au style de sections différent.
 - **Rétrocompatibilité par axes vides** : un axe optionnel absent de l'ADN produit une chaîne vide dans l'empreinte ; `similarity()` ne compte que les axes égaux **et non vides**. Un ADN V1 se fingerprint donc sans erreur et sans faux positif — aucun changement d'API (`fingerprint`, `similarity`, `check`, `suggestions` conservés).
 - **Champs d'ADN `section_bg_rhythm` / `section_style` permis dès V2-A** : ajoutés au schéma (`dna.schema.json`) et au validateur PHP comme champs **optionnels**, pour que les ADN qui les portent soient valides et alimentent l'empreinte. Leur *application* visuelle (global styles + block styles) relève du jalon V2-B ; V2-A reste « sans nouveau design » (les ADN existants sont inchangés).
+
+## Automatisation des releases
+
+- **release-please (Google) plutôt qu'un workflow maison de tag-sur-bump** : le
+  projet suit déjà Conventional Commits + Keep a Changelog ; release-please en tire
+  automatiquement le bump SemVer, le CHANGELOG et la release via une « Release PR »
+  fusionnable. Type `simple` + `extra-files` pour porter la version dans les en-têtes
+  WordPress (`style.css`, `maji-core.php`) — aucune dépendance PHP ajoutée (action GH).
+- **Build des zips dans le workflow release-please** (étapes conditionnées à
+  `release_created`) plutôt qu'en s'appuyant sur `release.yml` : un tag créé par
+  `GITHUB_TOKEN` ne déclenche pas un autre workflow (`on: push: tags`). Enchaîner le
+  build dans la même exécution garantit l'attache des zips. `release.yml` est conservé
+  comme filet manuel (tag poussé à la main).
+- **Déclencheur calé sur la branche par défaut du dépôt** (`if: github.ref ==
+  refs/heads/<default>`) plutôt qu'un nom de branche en dur : robuste à un futur
+  passage `main`, sans édition du workflow.

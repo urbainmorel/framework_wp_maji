@@ -52,9 +52,28 @@ En-têtes envoyés : `X-MAJI-Event`, `X-MAJI-Site`, `X-MAJI-Delivery` (UUID),
 
 ## Mises à jour de flotte
 
-- Publier : mettre à jour `CHANGELOG.md`, bumper les versions (`style.css`,
-  `maji-core.php`), tagger `vX.Y.Z` et pousser — la CI (`release.yml`) construit
-  `maji-framework.zip` et `maji-core.zip` et crée la GitHub Release.
+### Publier une release (automatique — release-please)
+
+Le flux nominal est **entièrement automatisé** à partir des Conventional Commits
+(`.github/workflows/release-please.yml`) :
+
+1. Développer et fusionner normalement sur la branche par défaut (commits `feat:`,
+   `fix:`, `feat!:`…). **Aucun bump de version ni édition manuelle du CHANGELOG.**
+2. release-please maintient une **« Release PR »** ouverte qui calcule la prochaine
+   version (SemVer d'après les commits), bumpe `style.css` + `maji-core.php` (via les
+   marqueurs `x-release-please-*`) et met à jour `CHANGELOG.md`.
+3. **Fusionner cette Release PR** = créer le tag `vX.Y.Z` + la GitHub Release ; le
+   même workflow construit alors `maji-framework.zip` / `maji-core.zip` et les attache.
+
+Réglage unique du dépôt : *Settings → Actions → General → Workflow permissions →*
+cocher **« Allow GitHub Actions to create and approve pull requests »** (sinon la
+Release PR ne peut pas être ouverte).
+
+Filet manuel (inchangé) : pousser un tag `vX.Y.Z` à la main déclenche toujours
+`release.yml`, qui construit et publie les mêmes zips.
+
+### Diffusion
+
 - Chaque site vérifie les releases via plugin-update-checker : le correctif est
   proposé dans l'admin des ~30 sites en quelques minutes (< 30 min, O4).
 - Canal beta : tagger `vX.Y.Z-beta.N` (pré-release) et définir

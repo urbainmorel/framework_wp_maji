@@ -1,0 +1,60 @@
+name: Release Please
+
+# Automatise entièrement les releases à partir des Conventional Commits :
+# release-please tient à jour une « Release PR » (bump de version + CHANGELOG) ;
+# à sa fusion sur la branche par défaut, il crée le tag + la release GitHub,
+# puis ce même workflow construit et attache les zips de flotte.
+#
+# Prérequis (réglage unique du dépôt) : Settings → Actions → General →
+# Workflow permissions → cocher « Allow GitHub Actions to create and approve
+# pull requests » (sinon release-please ne peut pas ouvrir sa Release PR).
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    name: Release PR & publication
+    runs-on: ubuntu-latest
+    # Ne s'exécute que sur la branche par défaut du dépôt, quel que soit son nom.
+    if: ${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      # Les étapes suivantes ne se déclenchent que si une release vient d'être créée
+      # (fusion de la Release PR). Construire les zips ici évite la limitation
+      # « un tag créé par GITHUB_TOKEN ne déclenche pas release.yml ».
+      - name: Checkout du tag publié
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        if: ${{ steps.release.outputs.release_created }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: composer:v2
+
+      - name: Build des zips de release
+        if: ${{ steps.release.outputs.release_created }}
+        run: bash scripts/release.sh
+
+      - name: Attache les zips à la release
+        if: ${{ steps.release.outputs.release_created }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release.outputs.tag_name }}
+          files: |
+            dist/maji-framework.zip
+            dist/maji-core.zip
