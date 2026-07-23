@@ -172,7 +172,10 @@ diversité *perçue* effective se compte en **dizaines de milliers** de rendus.
    paires critiques par un test automatique. Correction au passage d'un défaut d'accent
    non conforme de `da-solaire-minimal`.
 4. **V2-D — +4 heros/secteur et +24 sections (L2/L3).** 6 → 10 heros, 16 → 40 sections.
-5. **V2-E — +6 paires typo (L4).** 6 → 12.
+5. **V2-E — +6 paires typo (L4). ✅ Livré.** 6 → 12 paires (fp-07…fp-12), par
+   recombinaisons inédites des 11 familles OFL déjà auto-hébergées (aucune police
+   ajoutée, budget ≤ 4 WOFF2/site préservé) ; test de garde sur familles, WOFF2 et
+   budget.
 6. **V2-F — Contrôle visuel automatique (L6).** Intégration capture + auto-critique
    dans l'agent orchestrateur.
 

@@ -68,7 +68,7 @@
 			"additionalProperties": false,
 			"properties": {
 				"da": { "enum": [ "da-editorial-sombre", "da-solaire-minimal", "da-artisanal-texture", "da-lagune-fraiche", "da-nuit-cuivre", "da-savane-doree", "da-terracotta-vive", "da-ardoise-moderne", "da-jardin-botanique", "da-onyx-emeraude" ] },
-				"font_pair": { "enum": [ "fp-01", "fp-02", "fp-03", "fp-04", "fp-05", "fp-06" ] },
+				"font_pair": { "enum": [ "fp-01", "fp-02", "fp-03", "fp-04", "fp-05", "fp-06", "fp-07", "fp-08", "fp-09", "fp-10", "fp-11", "fp-12" ] },
 				"palette": {
 					"type": "object",
 					"additionalProperties": false,

@@ -41,7 +41,7 @@ STRUCTURE DE dna.json (schéma "maji-dna/1")
   },
   "integrations": { "n8n_order_url": "", "n8n_reservation_url": "" },
   "design": {
-    "da": "<une des 3 DA>", "font_pair": "<fp-01..fp-06>",
+    "da": "<un des 10 slugs DA ci-dessous>", "font_pair": "<fp-01..fp-12>",
     "palette": { "primary": "#RRGGBB", "accent": "#RRGGBB" },
     "radius_scale": "sm|md|lg", "spacing_mood": "compact|normal|aere",
     "section_bg_rhythm": "uni|alterne|bandes|contraste", "section_style": "auto|net|ombre|minimal",
@@ -73,9 +73,15 @@ VALEURS AUTORISÉES
   • da-ardoise-moderne → gris froid, bleu ardoise + ambre (hôtel business, brasserie)
   • da-jardin-botanique → clair, vert sauge + rose, serif raffiné (hôtel jardin, végétal)
   • da-onyx-emeraude → sombre, émeraude + or (restaurant/hôtel luxe)
-- design.font_pair : fp-01 (élégant contemporain), fp-02 (classique chic),
-  fp-03 (géométrique moderne), fp-04 (raffiné artisanal), fp-05 (chaleureux lisible),
-  fp-06 (technique affirmé).
+- design.font_pair (12 paires ; heading / body) : fp-01 (élégant contemporain :
+  Fraunces / Inter), fp-02 (classique chic : Playfair / Source Sans 3),
+  fp-03 (géométrique moderne : Sora / Inter), fp-04 (raffiné artisanal :
+  Cormorant / Work Sans), fp-05 (chaleureux lisible : Lora / Nunito Sans),
+  fp-06 (technique affirmé : Space Grotesk / IBM Plex Sans),
+  fp-07 (dramatique net : Playfair / Work Sans), fp-08 (délicat doux :
+  Cormorant / Nunito Sans), fp-09 (expressif technique : Fraunces / IBM Plex Sans),
+  fp-10 (littéraire neutre : Lora / Inter), fp-11 (moderne sobre :
+  Space Grotesk / Source Sans 3), fp-12 (géométrique humaniste : Sora / Work Sans).
 - design.section_bg_rhythm : alternance des fonds de sections neutres.
   • uni → tous les fonds identiques (calme, haut de gamme sobre)
   • alterne → base / surface (respiration douce, valeur par défaut recommandée)

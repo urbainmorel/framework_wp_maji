@@ -38,7 +38,7 @@ final class DnaValidator {
 			'da-jardin-botanique',
 			'da-onyx-emeraude',
 		],
-		'font_pairs'   => [ 'fp-01', 'fp-02', 'fp-03', 'fp-04', 'fp-05', 'fp-06' ],
+		'font_pairs'   => [ 'fp-01', 'fp-02', 'fp-03', 'fp-04', 'fp-05', 'fp-06', 'fp-07', 'fp-08', 'fp-09', 'fp-10', 'fp-11', 'fp-12' ],
 		'headers'      => [ 'header-01', 'header-02', 'header-03', 'header-04' ],
 		'footers'      => [ 'footer-01', 'footer-02', 'footer-03' ],
 		'vocabularies' => [ 'hotel-classique', 'hotel-experientiel', 'resto-classique', 'resto-convivial' ],

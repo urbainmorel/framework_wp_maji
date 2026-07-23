@@ -101,3 +101,18 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   palettes y sont ajoutées en plus du schéma, du validateur (`DEFAULT_REFS`) et du prompt
   générateur, pour que `apply-dna` applique correctement les nouvelles DA via les global
   styles utilisateur.
+
+## V2-E — +6 paires typographiques (6 → 12)
+
+- **Doublement par recombinaison des 11 familles OFL existantes** plutôt qu'ajout de
+  nouvelles polices : fp-07…fp-12 sont des associations heading/body inédites (Playfair /
+  Work Sans, Cormorant / Nunito Sans, Fraunces / IBM Plex Sans, Lora / Inter,
+  Space Grotesk / Source Sans 3, Sora / Work Sans). Aucun WOFF2 à télécharger, licences
+  SIL OFL déjà en place, budget performance intact (≤ 4 fichiers chargés par site, la
+  paire active uniquement). Les 11 familles couvrent déjà une large variété ; ajouter de
+  nouvelles familles resterait possible (plafond 16) mais n'apporte pas assez de diversité
+  pour son coût de maintenance à ce stade.
+- **Garde-fou `FontPairsTest`** : 12 paires, identifiants et combinaisons heading/body
+  uniques, chaque famille enregistrée dans `theme.json` avec ses WOFF2 présents sur disque,
+  budget de 4 fichiers respecté, et acceptation par le validateur. `font_pair` étendu au
+  schéma, au validateur (`DEFAULT_REFS`) et au prompt générateur.
