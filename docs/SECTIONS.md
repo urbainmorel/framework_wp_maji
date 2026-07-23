@@ -51,6 +51,14 @@ Bibliothèque de patterns du thème `maji-framework` (STI Annexe C). Chaque patt
 | `maji/resto-menu-03` | Menu complet groupé par catégories | `maji/menu-categories` |
 | `maji/resto-populaires-01` | Rangée 3 plats badge « populaire », entête gauche | `maji/menu-grid` |
 | `maji/resto-livraison-01` | Fond primaire : texte + tableau zones/frais | — |
+| `maji/resto-menu-04` | Carte encadrée : intro + liste de plats dans une carte | `maji/menu-list` |
+| `maji/resto-populaires-02` | Plats signature en grandes cartes (2 colonnes, badge « populaire ») | `maji/menu-grid` |
+| `maji/resto-livraison-02` | Commander en trois étapes (cartes numérotées) | — |
+| `maji/resto-apropos-01` | Notre histoire : image portrait + récit (`apropos_texte`) | — |
+| `maji/resto-ambiance-01` | Dans notre salle : accroche + deux photos | — |
+| `maji/resto-evenements-01` | Privatisation & événements : texte + image + CTA | — |
+| `maji/resto-horaires-01` | Horaires (bloc `maji/opening-hours`) + liste des services | `maji/opening-hours` |
+| `maji/resto-chiffres-01` | Fond primaire : trois repères (année, cuisine, ville) | — |
 | `maji/commun-avis-01` | 3 cartes d'avis étoilées | — |
 | `maji/commun-avis-02` | Citation unique pleine largeur sur fond contraste | — |
 | `maji/commun-galerie-01` | Mosaïque 4 images avec lightbox native | — |

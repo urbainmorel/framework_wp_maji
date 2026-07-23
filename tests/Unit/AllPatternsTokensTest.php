@@ -36,6 +36,7 @@ final class AllPatternsTokensTest extends TestCase {
 				'hero_tagline',
 				'menu_du_jour',
 				'menu_intro',
+				'apropos_texte',
 				'chambres_intro',
 				'cta_titre',
 				'chambre_1_nom',

@@ -136,6 +136,14 @@ Sections restaurant :
 - maji/resto-menu-03 → (aucun texte ; menu par catégories)
 - maji/resto-populaires-01 → (aucun texte ; plats "populaire")
 - maji/resto-livraison-01 → textes: zone_1_nom, zone_1_frais, zone_2_nom, zone_2_frais, zone_3_nom, zone_3_frais
+- maji/resto-menu-04 → textes: menu_intro (carte encadrée, liste de plats)
+- maji/resto-populaires-02 → facts: specialites (plats "populaire" en grandes cartes)
+- maji/resto-livraison-02 → (aucun texte ; « commander en 3 étapes »)
+- maji/resto-apropos-01 → textes: apropos_texte · facts: specialites · média: apropos
+- maji/resto-ambiance-01 → facts: specialites · médias: gallery-1, gallery-2
+- maji/resto-evenements-01 → (aucun texte ; privatisation) · média: evenements
+- maji/resto-horaires-01 → (aucun texte ; horaires depuis réglages + services)
+- maji/resto-chiffres-01 → facts: annee, specialites (repères)
 Sections communes :
 - maji/commun-avis-01 → textes: avis_1_texte, avis_1_auteur, avis_2_texte, avis_2_auteur, avis_3_texte, avis_3_auteur
 - maji/commun-avis-02 → textes: avis_1_texte, avis_1_auteur
