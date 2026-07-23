@@ -159,6 +159,14 @@ Sections communes :
 - maji/commun-localisation-01 → média: map (affiche adresse + horaires depuis l'identité)
 - maji/commun-faq-01 → textes: faq_1_question, faq_1_reponse, faq_2_question, faq_2_reponse, faq_3_question, faq_3_reponse
 - maji/commun-cta-01 → textes: cta_titre
+- maji/commun-avis-03 → textes: avis_1_texte, avis_1_auteur (note + avis en vedette)
+- maji/commun-galerie-02 → médias: gallery-1, gallery-2, gallery-3 (bandeau plein largeur)
+- maji/commun-galerie-03 → médias: gallery-1 … gallery-6 (mosaïque 6)
+- maji/commun-localisation-02 → (aucun texte ; contact + horaires + adresse compacts)
+- maji/commun-faq-02 → textes: faq_1_question, faq_1_reponse, faq_2_question, faq_2_reponse, faq_3_question, faq_3_reponse (2 colonnes)
+- maji/commun-cta-02 → textes: cta_titre · média: cta (CTA split image)
+- maji/commun-apropos-01 → textes: apropos_texte (présentation générique)
+- maji/commun-valeurs-01 → (aucun texte/média ; engagements en icônes)
 
 STRUCTURE TYPE À PRODUIRE
 - Toujours au moins 3 pages : "accueil", une page métier (chambres OU menu), "contact".

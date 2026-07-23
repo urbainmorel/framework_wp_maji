@@ -73,6 +73,14 @@ Bibliothèque de patterns du thème `maji-framework` (STI Annexe C). Chaque patt
 | `maji/commun-localisation-01` | Carte statique 55 % + adresse + horaires | `maji/establishment-info`, `maji/opening-hours` |
 | `maji/commun-faq-01` | Accordéon natif (bloc details) | — |
 | `maji/commun-cta-01` | Bandeau final fond accent, WhatsApp + Réserver | `maji/whatsapp-button` |
+| `maji/commun-avis-03` | Note en vedette + avis mis en avant (2 colonnes) | — |
+| `maji/commun-galerie-02` | Bandeau pleine largeur, trois images portrait | — |
+| `maji/commun-galerie-03` | Mosaïque six images avec lightbox native | — |
+| `maji/commun-localisation-02` | Contact + horaires + adresse compacts (3 colonnes) | `maji/establishment-info`, `maji/opening-hours`, `maji/whatsapp-button` |
+| `maji/commun-faq-02` | FAQ deux colonnes (intro + accordéon) | — |
+| `maji/commun-cta-02` | CTA fond primaire, split texte + image | `maji/whatsapp-button` |
+| `maji/commun-apropos-01` | Présentation générique centrée (`apropos_texte`) | — |
+| `maji/commun-valeurs-01` | Quatre engagements en icônes | — |
 
 ## Blocs d'affichage du plugin
 
