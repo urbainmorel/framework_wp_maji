@@ -6,6 +6,13 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 
 À partir de la 1.1.0, les entrées de version et les tags sont générés automatiquement par [release-please](https://github.com/googleapis/release-please) depuis les Conventional Commits (voir `.github/workflows/release-please.yml`). Les changements en attente apparaissent dans la « Release PR » du dépôt, pas dans une section « Unreleased ».
 
+## [1.8.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.7.0...v1.8.0) (2026-07-23)
+
+
+### Ajouté
+
+* V2-D4 — 8 new shared sections (32 to 40, V2-D complete) ([a609648](https://github.com/urbainmorel/framework_wp_maji/commit/a609648343cd75fb836a8edddd3ca10891127e4d))
+
 ## [1.7.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.6.0...v1.7.0) (2026-07-23)
 
 
