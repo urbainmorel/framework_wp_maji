@@ -6,6 +6,13 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 
 À partir de la 1.1.0, les entrées de version et les tags sont générés automatiquement par [release-please](https://github.com/googleapis/release-please) depuis les Conventional Commits (voir `.github/workflows/release-please.yml`). Les changements en attente apparaissent dans la « Release PR » du dépôt, pas dans une section « Unreleased ».
 
+## [1.3.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.2.0...v1.3.0) (2026-07-23)
+
+
+### Ajouté
+
+* V2-C — add 7 curated art directions (3 to 10) ([9dc7847](https://github.com/urbainmorel/framework_wp_maji/commit/9dc7847e91e9cbf0714124ba3576db5c4bdd9fc5))
+
 ## [1.2.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.1.0...v1.2.0) (2026-07-22)
 
 
