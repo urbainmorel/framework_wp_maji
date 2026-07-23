@@ -1,0 +1,107 @@
+/*
+ * Motion premium MAJI (V2-G1) — 100 % natif, zéro dépendance.
+ *
+ * Règles d'or :
+ *  - on n'anime QUE `transform` et `opacity` (couches GPU, 60 fps) ;
+ *  - tout est neutralisé sous `prefers-reduced-motion: reduce` ;
+ *  - le contenu n'est JAMAIS masqué si l'animation ne peut pas tourner
+ *    (les états cachés vivent sous `@supports (animation-timeline: view())`) ;
+ *  - durées, distances et courbes viennent des tokens `--wp--custom--maji--motion--*`,
+ *    surchargés par chaque direction artistique.
+ */
+
+/* ---------------------------------------------------------------------------
+ * 1. Micro-interactions (survol / focus) — propriétés compositor uniquement.
+ * ------------------------------------------------------------------------- */
+
+.wp-block-image img,
+.wp-block-button__link,
+.wp-element-button,
+.maji-card,
+.maji-card--float {
+	transition:
+		transform var(--wp--custom--maji--motion--duration, 200ms) var(--wp--custom--maji--motion--easing, ease),
+		box-shadow var(--wp--custom--maji--motion--duration, 200ms) var(--wp--custom--maji--motion--easing, ease);
+}
+
+/* Le cadre des images arrondies détoure le zoom au survol. */
+.wp-block-image.has-custom-border {
+	overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	/* Zoom d'image dans son cadre. */
+	.wp-block-image.has-custom-border:hover img,
+	.wp-block-image.has-custom-border:focus-within img {
+		transform: scale(1.04);
+	}
+
+	/* Boutons : léger soulèvement. */
+	.wp-block-button__link:hover,
+	.wp-element-button:hover {
+		transform: translateY(-2px);
+	}
+
+	/* Cartes : soulèvement + ombre flottante. */
+	.maji-card:hover,
+	.maji-card--float:hover {
+		transform: translateY(-3px);
+		box-shadow: var(--wp--custom--maji--shadow--float);
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * 2. Révélations au scroll — CSS Scroll-driven Animations.
+ *    Enveloppées dans no-preference ET @supports : sans support, le contenu
+ *    reste pleinement visible (aucun état caché appliqué).
+ * ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+
+		@keyframes maji-reveal {
+			from {
+				opacity: 0;
+				transform: translateY(var(--wp--custom--maji--motion--distance, 20px));
+			}
+			to {
+				opacity: 1;
+				transform: none;
+			}
+		}
+
+		/* Chaque section pleine largeur se révèle en entrant dans le viewport. */
+		.wp-block-post-content > .wp-block-group.alignfull,
+		.wp-block-post-content > .wp-block-cover.alignfull,
+		.entry-content > .wp-block-group.alignfull,
+		.entry-content > .wp-block-cover.alignfull {
+			animation: maji-reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 22%;
+			animation-duration: var(--wp--custom--maji--motion--reveal, 600ms);
+			animation-timing-function: var(--wp--custom--maji--motion--easing-emphasized, ease-out);
+		}
+
+		/* Cascade : colonnes et cartes d'une section s'enchaînent en douceur. */
+		.wp-block-group.alignfull .wp-block-columns > .wp-block-column,
+		.wp-block-group.alignfull .wp-block-column > .maji-card {
+			animation: maji-reveal linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 30%;
+			animation-duration: var(--wp--custom--maji--motion--reveal, 600ms);
+			animation-timing-function: var(--wp--custom--maji--motion--easing-emphasized, ease-out);
+		}
+
+		.wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(2) {
+			animation-delay: var(--wp--custom--maji--motion--stagger, 70ms);
+		}
+
+		.wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(3) {
+			animation-delay: calc(var(--wp--custom--maji--motion--stagger, 70ms) * 2);
+		}
+
+		.wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(4) {
+			animation-delay: calc(var(--wp--custom--maji--motion--stagger, 70ms) * 3);
+		}
+	}
+}

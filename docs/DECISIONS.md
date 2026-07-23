@@ -116,3 +116,23 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   uniques, chaque famille enregistrée dans `theme.json` avec ses WOFF2 présents sur disque,
   budget de 4 fichiers respecté, et acceptation par le validateur. `font_pair` étendu au
   schéma, au validateur (`DEFAULT_REFS`) et au prompt générateur.
+
+## V2-G1 — Socle motion premium (CSS natif)
+
+- **Animations 100 % natives, zéro dépendance** (pas de GSAP/AOS/CDN/jQuery) :
+  révélations au scroll via **CSS Scroll-driven Animations** (`animation-timeline:
+  view()`), micro-interactions par transitions. Le seul JS (header/compteurs, View
+  Transitions) est reporté à V2-G2.
+- **CSS livré par le thème** (`assets/css/motion.css`, couche présentation statique
+  et tokenisée), enqueue après `maji.css`. Le pilotage par l'ADN (V2-G2) écrira dans
+  les global styles + classes, jamais dans les fichiers du thème.
+- **Amélioration progressive stricte** : les états cachés (opacity 0) ne vivent que
+  sous `@media (prefers-reduced-motion: no-preference)` **et**
+  `@supports (animation-timeline: view())`. Sans support ou avec préférence de
+  mouvement réduit, le contenu reste pleinement visible — jamais masqué.
+- **Compositor-only** : les animations continues n'agissent que sur `transform` /
+  `opacity` ; aucune propriété de layout transitionnée. Garanti par `MotionCssTest`.
+- **Signature par DA** : tokens `custom.maji.motion` étendus (base + `reveal`,
+  `distance`, `stagger`, `easing-emphasized`, `duration-fast`) et surchargés dans les
+  10 DA (dérivés de leur `duration`) → le mouvement devient un axe de diversité (7ᵉ
+  levier, voir `docs/MOTION.md`).

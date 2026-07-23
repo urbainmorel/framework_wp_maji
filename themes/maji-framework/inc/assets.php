@@ -28,5 +28,13 @@ function maji_framework_enqueue_assets(): void {
 		[],
 		MAJI_FRAMEWORK_VERSION
 	);
+	// Motion premium (V2-G) : animations natives, tokens only, coupées sous
+	// prefers-reduced-motion et sans état caché quand non supporté.
+	wp_enqueue_style(
+		'maji-framework-motion',
+		get_template_directory_uri() . '/assets/css/motion.css',
+		[ 'maji-framework-structural' ],
+		MAJI_FRAMEWORK_VERSION
+	);
 }
 add_action( 'wp_enqueue_scripts', 'maji_framework_enqueue_assets' );
