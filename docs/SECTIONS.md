@@ -46,6 +46,14 @@ Bibliothèque de patterns du thème `maji-framework` (STI Annexe C). Chaque patt
 | `maji/hotel-equipements-01` | Grille de 4 icônes centrées | — |
 | `maji/hotel-equipements-02` | Bandes horizontales bordées | — |
 | `maji/hotel-services-01` | 3 cartes image + titre + description | — |
+| `maji/hotel-chambres-03` | Chambre vedette : grande image + carte (media-text) | — |
+| `maji/hotel-equipements-03` | Checklist des équipements sur deux colonnes | — |
+| `maji/hotel-services-02` | Services en liste média alternée (media-text ×3) | — |
+| `maji/hotel-experience-01` | Activités à proximité en 3 cartes image | — |
+| `maji/hotel-experience-02` | Split éditorial image + récit (`experience_texte`) | — |
+| `maji/hotel-apropos-01` | Notre histoire : image portrait + récit (`apropos_texte`) | — |
+| `maji/hotel-offres-01` | Trois forfaits en cartes + CTA Réserver | — |
+| `maji/hotel-chiffres-01` | Fond primaire : trois repères (année, quartier, ville) | — |
 | `maji/resto-menu-01` | Grille photo 4 colonnes + CTA Commander | `maji/menu-grid` |
 | `maji/resto-menu-02` | Liste typographique étroite (640px), pointillés | `maji/menu-list` |
 | `maji/resto-menu-03` | Menu complet groupé par catégories | `maji/menu-categories` |

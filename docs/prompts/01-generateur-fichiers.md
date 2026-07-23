@@ -130,6 +130,14 @@ Sections hôtel :
 - maji/hotel-equipements-01 → (aucun texte/média)
 - maji/hotel-equipements-02 → (aucun texte/média)
 - maji/hotel-services-01 → textes: service_1_description, service_2_description, service_3_description · médias: service-1, service-2, service-3
+- maji/hotel-chambres-03 → textes: chambre_1_nom, chambre_1_description · média: chambre-1 (chambre vedette)
+- maji/hotel-equipements-03 → (aucun texte/média ; checklist)
+- maji/hotel-services-02 → textes: service_1_description, service_2_description, service_3_description · médias: service-1, service-2, service-3
+- maji/hotel-experience-01 → (aucun texte ; activités) · médias: experience-1, experience-2, experience-3
+- maji/hotel-experience-02 → textes: experience_texte · facts: quartier · média: experience
+- maji/hotel-apropos-01 → textes: apropos_texte · facts: annee · média: apropos
+- maji/hotel-offres-01 → (aucun texte/média ; forfaits)
+- maji/hotel-chiffres-01 → facts: annee, quartier (repères)
 Sections restaurant :
 - maji/resto-menu-01 → textes: menu_intro (grille de plats)
 - maji/resto-menu-02 → (aucun texte ; liste de plats)
