@@ -165,7 +165,12 @@ diversité *perçue* effective se compte en **dizaines de milliers** de rendus.
    Appliqués à l'import via `SectionStyler` (contenu en base) + block styles du plugin
    (tokens only) ; schéma + validateur + 6 ADN enrichis. Rythme de fonds cantonné aux
    neutres validés WCAG ; heros et sections à fond intentionnel préservés.
-3. **V2-C — +7 DA (L1).** 3 → 10, chacune validée deux secteurs.
+3. **V2-C — +7 DA (L1). ✅ Livré.** 3 → 10 directions artistiques (`da-lagune-fraiche`,
+   `da-nuit-cuivre`, `da-savane-doree`, `da-terracotta-vive`, `da-ardoise-moderne`,
+   `da-jardin-botanique`, `da-onyx-emeraude`), chacune curée (palette 10 slugs, duotones,
+   rayons/ombres/espacement, typographie, block styles) et validée WCAG AA sur toutes les
+   paires critiques par un test automatique. Correction au passage d'un défaut d'accent
+   non conforme de `da-solaire-minimal`.
 4. **V2-D — +4 heros/secteur et +24 sections (L2/L3).** 6 → 10 heros, 16 → 40 sections.
 5. **V2-E — +6 paires typo (L4).** 6 → 12.
 6. **V2-F — Contrôle visuel automatique (L6).** Intégration capture + auto-critique

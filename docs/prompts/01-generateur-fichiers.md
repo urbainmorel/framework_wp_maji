@@ -62,10 +62,17 @@ STRUCTURE DE dna.json (schéma "maji-dna/1")
 }
 
 VALEURS AUTORISÉES
-- design.da :
+- design.da (10 directions artistiques, toutes validées WCAG dans les 2 secteurs) :
   • da-editorial-sombre → sombre, chic, doré (hôtel premium, gastro)
   • da-solaire-minimal → clair, épuré, moderne (resto moderne, hôtel business)
   • da-artisanal-texture → tons terre, chaleureux (maquis, cuisine locale, boutique)
+  • da-lagune-fraiche → clair, aquatique, turquoise + corail (bord de mer, poisson)
+  • da-nuit-cuivre → sombre, cuivre chaud, serif classique (gastro, hôtel de charme)
+  • da-savane-doree → crème chaud, ocre + vert (lodge, cuisine africaine)
+  • da-terracotta-vive → clair, terracotta + sarcelle, serif élégant (bistro vivant)
+  • da-ardoise-moderne → gris froid, bleu ardoise + ambre (hôtel business, brasserie)
+  • da-jardin-botanique → clair, vert sauge + rose, serif raffiné (hôtel jardin, végétal)
+  • da-onyx-emeraude → sombre, émeraude + or (restaurant/hôtel luxe)
 - design.font_pair : fp-01 (élégant contemporain), fp-02 (classique chic),
   fp-03 (géométrique moderne), fp-04 (raffiné artisanal), fp-05 (chaleureux lisible),
   fp-06 (technique affirmé).

@@ -8,7 +8,7 @@ Usine à sites WordPress pour hôtels et restaurants — marchés d'Afrique de l
 
 | Composant | Emplacement | Rôle |
 |---|---|---|
-| Thème `maji-framework` | `themes/maji-framework/` | Block theme (FSE) piloté par tokens `theme.json`, 3 directions artistiques, bibliothèque de sections |
+| Thème `maji-framework` | `themes/maji-framework/` | Block theme (FSE) piloté par tokens `theme.json`, 10 directions artistiques, bibliothèque de sections |
 | Plugin `maji-core` | `plugins/maji-core/` | Modes hôtel/restaurant, réservations, commandes, WhatsApp, webhooks, SEO, CLI `wp maji` |
 | Système ADN | `dna/` | Schéma + exemples de fichiers `dna.json` par client |
 | Registre anti-clones | `registry/registry.json` | Empreintes des sites livrés, contrôle de similarité bloquant |

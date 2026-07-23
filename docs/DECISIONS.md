@@ -79,3 +79,25 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   reste à valider visuellement en wp-env — le mécanisme, lui, est neutre et sûr.
 - **6 ADN d'exemple/modèles enrichis** des deux champs (valeurs variées) : nourrit
   aussi l'empreinte anti-clones V2-A (max de similarité par paire : 0,39).
+
+## V2-C — +7 directions artistiques (3 → 10)
+
+- **7 nouvelles DA curées** (`da-lagune-fraiche`, `da-nuit-cuivre`, `da-savane-doree`,
+  `da-terracotta-vive`, `da-ardoise-moderne`, `da-jardin-botanique`, `da-onyx-emeraude`)
+  livrées comme style variations (`themes/maji-framework/styles/*.json`) : palette
+  sémantique 10 slugs, 2 duotones, échelles rayons/ombres/espacement et typographie
+  propres à chaque DA (parmi les 11 familles déjà enregistrées — aucune police ajoutée,
+  L4/V2-E reste à venir). 3 DA sombres + 7 claires, teintes primaires réparties pour
+  maximiser l'axe `palette_hue_bucket` de l'empreinte.
+- **WCAG AA garanti par test** (`DaPalettesTest`) : chaque DA est vérifiée sur 6 paires
+  — `ink` sur `base`/`surface`/`surface-alt` (couvre le rythme de fonds V2-B), `contrast`
+  sur `base`, `primary-contrast`/`primary`, `accent-contrast`/`accent` — et sa cohérence
+  palette ⇄ fichier de style ⇄ acceptation par le validateur. Les couleurs ont été
+  conçues puis validées numériquement avant écriture.
+- **Correction d'un défaut latent** : le défaut d'accent de `da-solaire-minimal`
+  (`#F2620F`, 3,22:1 sur blanc) échouait AA ; ramené à `#C2410C` (5,18:1), déjà éprouvé
+  par le site modèle restaurant-premium. Le test l'a révélé.
+- **`DA_PALETTES` (validateur/GlobalStyles) reste la source de vérité PHP** : les 7
+  palettes y sont ajoutées en plus du schéma, du validateur (`DEFAULT_REFS`) et du prompt
+  générateur, pour que `apply-dna` applique correctement les nouvelles DA via les global
+  styles utilisateur.
