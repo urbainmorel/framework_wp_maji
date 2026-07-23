@@ -109,6 +109,10 @@ Heros hôtel :
 - maji/hotel-hero-04 → textes: hero_tagline · média: hero (contient le formulaire de réservation)
 - maji/hotel-hero-05 → textes: hero_tagline · médias: hero, gallery-1, gallery-2
 - maji/hotel-hero-06 → textes: hero_tagline · média: hero
+- maji/hotel-hero-07 → textes: hero_tagline · facts: quartier (formulaire de réservation, aucun média)
+- maji/hotel-hero-08 → textes: hero_tagline · facts: annee · médias: hero, gallery-1
+- maji/hotel-hero-09 → textes: hero_tagline · facts: quartier · média: hero (logo/rond)
+- maji/hotel-hero-10 → textes: hero_tagline · facts: quartier, annee (repères, aucun média)
 Heros restaurant :
 - maji/resto-hero-01 → textes: hero_tagline · média: hero
 - maji/resto-hero-02 → textes: hero_tagline · facts: quartier · média: hero
@@ -116,6 +120,10 @@ Heros restaurant :
 - maji/resto-hero-04 → (aucun texte/média ; affiche les plats "populaire")
 - maji/resto-hero-05 → textes: hero_tagline · facts: annee · média: hero
 - maji/resto-hero-06 → textes: hero_tagline · média: hero
+- maji/resto-hero-07 → textes: hero_tagline, menu_du_jour · facts: specialites (aucun média)
+- maji/resto-hero-08 → textes: hero_tagline · facts: specialites · média: hero
+- maji/resto-hero-09 → textes: hero_tagline · facts: specialites · médias: hero, gallery-1, gallery-2
+- maji/resto-hero-10 → textes: hero_tagline · facts: specialites · média: hero
 Sections hôtel :
 - maji/hotel-chambres-01 → textes: chambres_intro (affiche les chambres)
 - maji/hotel-chambres-02 → textes: chambre_1_nom, chambre_1_description, chambre_2_nom, chambre_2_description · médias: chambre-1, chambre-2

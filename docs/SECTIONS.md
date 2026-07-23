@@ -17,6 +17,10 @@ Bibliothèque de patterns du thème `maji-framework` (STI Annexe C). Chaque patt
 | `maji/hotel-hero-04` | Cover + formulaire de réservation intégré (bloc `maji/reservation-form`) | `identity.name` | `hero` |
 | `maji/hotel-hero-05` | Titre centré + mosaïque 3 images (1 portrait, 2 paysage) | `identity.name` | `hero`, `gallery-1`, `gallery-2` |
 | `maji/hotel-hero-06` | Cover 70vh contenu bas gauche + carte flottante à cheval | `identity.name`, `content.texts.hero_tagline` | `hero` |
+| `maji/hotel-hero-07` | Colonnes texte + carte flottante avec formulaire de réservation | `identity.name`, `content.texts.hero_tagline`, `content.facts.quartier` | — |
+| `maji/hotel-hero-08` | Diaporama vertical (2 images empilées) + texte à droite | `identity.name`, `content.texts.hero_tagline`, `content.facts.annee` | `hero`, `gallery-1` |
+| `maji/hotel-hero-09` | Minimal centré : médaillon rond + titre + repère quartier | `identity.name`, `content.texts.hero_tagline`, `content.facts.quartier` | `hero` |
+| `maji/hotel-hero-10` | Éditorial + trois cartes de repères clés (année, quartier, ville) | `identity.name`, `content.texts.hero_tagline`, `content.facts.annee`, `content.facts.quartier` | — |
 
 ## Heros restaurant
 
@@ -28,6 +32,10 @@ Bibliothèque de patterns du thème `maji-framework` (STI Annexe C). Chaque patt
 | `maji/resto-hero-04` | Rangée de plats signature (bloc `maji/menu-grid` badge populaire) | `identity.name` | — |
 | `maji/resto-hero-05` | Cover 100vh parallaxe, ambiance immersive | `identity.name`, `content.facts.annee` | `hero` |
 | `maji/resto-hero-06` | Split image gauche + carte double CTA Commander / Réserver | `identity.name`, `identity.address.city` | `hero` |
+| `maji/resto-hero-07` | Deux colonnes typographiques : titre à gauche, carte « menu du jour » à droite | `identity.name`, `content.texts.hero_tagline`, `content.texts.menu_du_jour`, `content.facts.specialites` | — |
+| `maji/resto-hero-08` | Cover plein cadre + double CTA Commander / Réserver superposé | `identity.name`, `content.texts.hero_tagline`, `content.facts.specialites` | `hero` |
+| `maji/resto-hero-09` | Titre centré + mosaïque de trois plats (carrés) | `identity.name`, `content.texts.hero_tagline`, `content.facts.specialites` | `hero`, `gallery-1`, `gallery-2` |
+| `maji/resto-hero-10` | Cover ambiance sombre, contenu bas gauche + Commander | `identity.name`, `content.texts.hero_tagline`, `content.facts.specialites` | `hero` |
 
 ## Sections
 
