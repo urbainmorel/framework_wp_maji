@@ -11,3 +11,4 @@ dist/
 .DS_Store
 plugins/maji-core/vendor/
 plugins/maji-core/build/
+reports/

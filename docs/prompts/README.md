@@ -38,6 +38,7 @@ les points à valider. **Vous n'êtes plus opérateur, vous êtes relecteur.**
 | `01-generateur-fichiers.md` | Chat (Claude/GPT web) | Le texte du brief client |
 | `02-classement-medias.md` | Chat **multimodal** (voit les images) | Les photos/vidéos |
 | `03-agent-orchestrateur.md` | Agent avec terminal (Claude Code, Codex) | Le dossier brut + accès à l'usine |
+| `04-controle-visuel.md` | Agent avec terminal (utilisé par le prompt 03) | Le site provisionné (URL) |
 
 ## Important — toujours relire
 

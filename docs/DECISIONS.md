@@ -164,3 +164,22 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   (`DnaValidator`) ; l'application (body class + enqueue conditionnel) est côté thème
   (présentation), qui lit l'option `maji_dna` en lecture seule. Rien n'est écrit dans
   les fichiers du thème.
+
+## V2-F — Contrôle visuel automatique (clôture V2)
+
+- **Outil déterministe + auto-critique d'agent** plutôt qu'un simple item de prompt :
+  `scripts/visual-check.mjs` (Playwright/Chromium fournis par le projet) capture
+  l'accueil en mobile ET desktop (above-the-fold + pleine page), exécute des
+  **contrôles durs objectifs** (défilement horizontal, erreurs console/JS, jeton
+  `{{maji:*}}` résiduel, absence de H1, images cassées, contraste du texte < 4,5:1) et
+  **sort en code ≠ 0** pour bloquer la livraison. La part subjective (hiérarchie,
+  densité, équilibre…) est une grille /5 dans `docs/prompts/04-controle-visuel.md`,
+  consommée par l'agent à partir des captures + du rapport JSON.
+- **Boucle capture → critique → ajuste** intégrée au prompt orchestrateur (03, étape 6) :
+  l'agent n'ajuste que l'ADN du client (jamais le thème), relance la provision et
+  recapture jusqu'au rendu net ; il journalise le résultat dans le rapport humain.
+- **Cohérence avec les leviers V2** : la grille §4 mappe chaque défaut visuel à un axe
+  d'ADN (section_bg_rhythm, section_style, spacing_mood, hero, da, motion…) — corriger
+  le rendu améliore aussi l'unicité anti-clones.
+- **Complète, ne remplace pas** les garde-fous automatiques (WCAG du validateur, budget
+  perf, jetons) : le contrôle visuel relève le *plancher* de qualité perçue.

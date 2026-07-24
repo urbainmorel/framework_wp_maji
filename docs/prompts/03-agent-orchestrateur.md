@@ -93,10 +93,15 @@ PROCÉDURE (exécute dans l'ordre, en autonomie)
    Répète correction → relance jusqu'à « Success: Site provisionné ». La commande
    est idempotente : la relancer est sûr.
 
-6. VÉRIFIER
+6. VÉRIFIER + CONTRÔLE VISUEL (obligatoire)
    Confirme qu'aucun jeton {{maji:*}} ne subsiste (la provision échoue sinon).
-   Si l'outillage le permet, prends une capture de l'accueil (Playwright est
-   disponible dans le projet) pour contrôler le rendu, et vérifie le rendu mobile.
+   Puis lance le contrôle visuel automatique et suis la boucle capture → critique →
+   ajuste décrite dans docs/prompts/04-controle-visuel.md :
+     node scripts/visual-check.mjs --url=<URL> --slug=<slug> --out=reports/visual
+   - Si le rapport contient des « hard_failures », corrige l'ADN et relance la
+     provision jusqu'à ce qu'ils disparaissent (aucune livraison avec un échec dur).
+   - Regarde les captures mobile + desktop, auto-note-toi (grille du prompt 04) et
+     ajuste les leviers d'ADN si un critère est faible. Recommence jusqu'au rendu net.
 
 7. RAPPORT FINAL (à l'humain)
    Rends un compte-rendu clair :
@@ -107,6 +112,8 @@ PROCÉDURE (exécute dans l'ordre, en autonomie)
      horaires supposés…) et tout ce qui MANQUE (téléphone non fourni, photo de plan
      absente, plats sans photo…).
    - Score d'unicité obtenu vs le registre.
+   - Résultat du contrôle visuel (OK / échecs corrigés), captures mobile + desktop,
+     notes /5 par critère et ajustements effectués (cf. reports/visual/<slug>-report.json).
    - Étape restante : après validation humaine, enregistrer l'empreinte avec
      `wp maji dna register clients/<slug>/dna.json --registry=registry/registry.json`
      (ne le fais PAS toi-même : c'est la décision de livraison de l'humain).

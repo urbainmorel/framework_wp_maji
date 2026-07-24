@@ -11,10 +11,12 @@
     "build": "npm run build --workspaces --if-present",
     "lint:js": "npm run lint:js --workspaces --if-present",
     "start": "wp-env start",
-    "stop": "wp-env stop"
+    "stop": "wp-env stop",
+    "visual-check": "node scripts/visual-check.mjs"
   },
   "devDependencies": {
     "@wordpress/env": "^10.10.0",
-    "gsap": "^3.15.0"
+    "gsap": "^3.15.0",
+    "playwright": "^1.40.0"
   }
 }

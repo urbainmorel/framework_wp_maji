@@ -178,8 +178,11 @@ diversité *perçue* effective se compte en **dizaines de milliers** de rendus.
    recombinaisons inédites des 11 familles OFL déjà auto-hébergées (aucune police
    ajoutée, budget ≤ 4 WOFF2/site préservé) ; test de garde sur familles, WOFF2 et
    budget.
-6. **V2-F — Contrôle visuel automatique (L6).** Intégration capture + auto-critique
-   dans l'agent orchestrateur.
+6. **V2-F — Contrôle visuel automatique (L6). ✅ Livré.** `scripts/visual-check.mjs`
+   (Playwright) capture l'accueil mobile + desktop, exécute des contrôles durs
+   (défilement horizontal, erreurs JS, jetons résiduels, H1, images cassées, contraste)
+   et écrit un rapport ; `docs/prompts/04-controle-visuel.md` fournit la grille
+   d'auto-critique et la boucle capture → critique → ajuste, intégrée au prompt 03.
 
 Chaque jalon respecte la *Definition of Done* du projet (lint, analyse, tests,
 build, budget perf, doc à jour) et reste dans l'interdit V2 déjà connu (pas de
