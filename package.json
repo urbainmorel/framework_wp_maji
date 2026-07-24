@@ -14,6 +14,7 @@
     "stop": "wp-env stop"
   },
   "devDependencies": {
-    "@wordpress/env": "^10.10.0"
+    "@wordpress/env": "^10.10.0",
+    "gsap": "^3.15.0"
   }
 }

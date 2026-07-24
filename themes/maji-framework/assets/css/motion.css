@@ -1,5 +1,5 @@
 /*
- * Motion premium MAJI (V2-G1) — 100 % natif, zéro dépendance.
+ * Motion premium MAJI — socle natif (V2-G1) + garde-niveaux (V2-G2).
  *
  * Règles d'or :
  *  - on n'anime QUE `transform` et `opacity` (couches GPU, 60 fps) ;
@@ -8,6 +8,11 @@
  *    (les états cachés vivent sous `@supports (animation-timeline: view())`) ;
  *  - durées, distances et courbes viennent des tokens `--wp--custom--maji--motion--*`,
  *    surchargés par chaque direction artistique.
+ *
+ * Niveaux (`body.maji-motion-*`, posés par le thème selon `design.motion`) :
+ *  - `none`       : aucune animation (ni reveal, ni micro-interaction de transform) ;
+ *  - `subtle`/`standard` : reveals au scroll natifs (ci-dessous) ;
+ *  - `expressive` : reveals pilotés par GSAP (motion-gsap.js) → le CSS se retire.
  */
 
 /* ---------------------------------------------------------------------------
@@ -31,20 +36,20 @@
 
 @media (prefers-reduced-motion: no-preference) {
 	/* Zoom d'image dans son cadre. */
-	.wp-block-image.has-custom-border:hover img,
-	.wp-block-image.has-custom-border:focus-within img {
+	body:not(.maji-motion-none) .wp-block-image.has-custom-border:hover img,
+	body:not(.maji-motion-none) .wp-block-image.has-custom-border:focus-within img {
 		transform: scale(1.04);
 	}
 
 	/* Boutons : léger soulèvement. */
-	.wp-block-button__link:hover,
-	.wp-element-button:hover {
+	body:not(.maji-motion-none) .wp-block-button__link:hover,
+	body:not(.maji-motion-none) .wp-element-button:hover {
 		transform: translateY(-2px);
 	}
 
 	/* Cartes : soulèvement + ombre flottante. */
-	.maji-card:hover,
-	.maji-card--float:hover {
+	body:not(.maji-motion-none) .maji-card:hover,
+	body:not(.maji-motion-none) .maji-card--float:hover {
 		transform: translateY(-3px);
 		box-shadow: var(--wp--custom--maji--shadow--float);
 	}
@@ -54,6 +59,7 @@
  * 2. Révélations au scroll — CSS Scroll-driven Animations.
  *    Enveloppées dans no-preference ET @supports : sans support, le contenu
  *    reste pleinement visible (aucun état caché appliqué).
+ *    Retirées au niveau `none` (rien) et `expressive` (GSAP prend le relais).
  * ------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: no-preference) {
@@ -71,10 +77,8 @@
 		}
 
 		/* Chaque section pleine largeur se révèle en entrant dans le viewport. */
-		.wp-block-post-content > .wp-block-group.alignfull,
-		.wp-block-post-content > .wp-block-cover.alignfull,
-		.entry-content > .wp-block-group.alignfull,
-		.entry-content > .wp-block-cover.alignfull {
+		body:not(.maji-motion-none):not(.maji-motion-expressive) :is(.wp-block-post-content, .entry-content) > .wp-block-group.alignfull,
+		body:not(.maji-motion-none):not(.maji-motion-expressive) :is(.wp-block-post-content, .entry-content) > .wp-block-cover.alignfull {
 			animation: maji-reveal linear both;
 			animation-timeline: view();
 			animation-range: entry 0% cover 22%;
@@ -83,8 +87,8 @@
 		}
 
 		/* Cascade : colonnes et cartes d'une section s'enchaînent en douceur. */
-		.wp-block-group.alignfull .wp-block-columns > .wp-block-column,
-		.wp-block-group.alignfull .wp-block-column > .maji-card {
+		body:not(.maji-motion-none):not(.maji-motion-expressive) .wp-block-group.alignfull .wp-block-columns > .wp-block-column,
+		body:not(.maji-motion-none):not(.maji-motion-expressive) .wp-block-group.alignfull .wp-block-column > .maji-card {
 			animation: maji-reveal linear both;
 			animation-timeline: view();
 			animation-range: entry 0% cover 30%;
@@ -92,15 +96,15 @@
 			animation-timing-function: var(--wp--custom--maji--motion--easing-emphasized, ease-out);
 		}
 
-		.wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(2) {
+		body:not(.maji-motion-none):not(.maji-motion-expressive) .wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(2) {
 			animation-delay: var(--wp--custom--maji--motion--stagger, 70ms);
 		}
 
-		.wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(3) {
+		body:not(.maji-motion-none):not(.maji-motion-expressive) .wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(3) {
 			animation-delay: calc(var(--wp--custom--maji--motion--stagger, 70ms) * 2);
 		}
 
-		.wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(4) {
+		body:not(.maji-motion-none):not(.maji-motion-expressive) .wp-block-group.alignfull .wp-block-columns > .wp-block-column:nth-child(4) {
 			animation-delay: calc(var(--wp--custom--maji--motion--stagger, 70ms) * 3);
 		}
 	}

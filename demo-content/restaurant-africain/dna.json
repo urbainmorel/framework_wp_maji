@@ -60,6 +60,7 @@
 		"spacing_mood": "normal",
 		"section_bg_rhythm": "bandes",
 		"section_style": "net",
+		"motion": "standard",
 		"image_treatment": {
 			"hero_ratio": "4:3",
 			"card_ratio": "1:1",

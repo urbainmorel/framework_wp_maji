@@ -45,6 +45,7 @@ STRUCTURE DE dna.json (schéma "maji-dna/1")
     "palette": { "primary": "#RRGGBB", "accent": "#RRGGBB" },
     "radius_scale": "sm|md|lg", "spacing_mood": "compact|normal|aere",
     "section_bg_rhythm": "uni|alterne|bandes|contraste", "section_style": "auto|net|ombre|minimal",
+    "motion": "none|subtle|standard|expressive",
     "image_treatment": { "hero_ratio": "16:9|4:3|21:9|3:2", "card_ratio": "4:3|1:1|3:4|16:9", "overlay": "none|primary|dark", "duotone": false }
   },
   "structure": {
@@ -87,6 +88,11 @@ VALEURS AUTORISÉES
   • alterne → base / surface (respiration douce, valeur par défaut recommandée)
   • bandes → base / surface alternative (bandes plus marquées)
   • contraste → surface / surface alternative (rythme soutenu, jamais monotone)
+- design.motion : intensité des animations premium.
+  • none → aucune animation (institutionnel, sobriété maximale)
+  • subtle → fondu des sections seul (élégant, discret — défaut recommandé)
+  • standard → fondu + montée en cascade + zoom d'images au survol
+  • expressive → + Ken Burns des heros, séquences GSAP (vitrines premium)
 - design.section_style : traitement du conteneur des sections.
   • auto → laisse la DA décider (par défaut)
   • net → filet fin de séparation entre sections (précis, éditorial)

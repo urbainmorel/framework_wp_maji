@@ -105,14 +105,28 @@ Chaque **DA** surcharge ces valeurs pour sa personnalité (ex. `da-onyx-emeraude
 
 ## 8. Jalons V2-G (ordre)
 
-1. **V2-G1 — Socle CSS (0 JS).** Tokens de motion étendus (base + 10 DA), stylesheet
-   de motion du thème : reveal de section au scroll (scroll-driven), cascade
-   `:nth-child`, micro-interactions de survol (image/bouton/carte/lien), gating
-   `prefers-reduced-motion` + `@supports`. Effet immédiat sur les 40 sections, **sans
-   toucher au contenu**. *Prérequis des suivants.*
-2. **V2-G2 — Pilotage par l'ADN (L7).** Champ `design.motion` + `MotionStyler`
-   (marqueurs + body class), petit module vanilla (header compacté, compteurs),
-   View Transitions API, Ken Burns des heros ; schéma + validateur + prompt + tests.
+1. **V2-G1 — Socle CSS (0 JS). ✅ Livré (1.9.0).** Tokens de motion étendus (base +
+   10 DA), stylesheet de motion du thème : reveal de section au scroll (scroll-driven),
+   cascade `:nth-child`, micro-interactions de survol (image/bouton/carte), gating
+   `prefers-reduced-motion` + `@supports`.
+2. **V2-G2 — Moteur GSAP piloté par l'ADN (L7). ✅ Livré.** Champ `design.motion`
+   (schéma + validateur) → classe `body.maji-motion-{niveau}` (le CSS de G1 s'y adosse)
+   et **chargement conditionnel de GSAP + ScrollTrigger auto-hébergés** (jamais en CDN),
+   en `defer`, **au seul niveau `expressive`**. Module `motion-gsap.js` : reveals par
+   `ScrollTrigger.batch`, Ken Burns des heros, le tout dans `gsap.matchMedia(
+   prefers-reduced-motion: no-preference)` et **transform/opacity uniquement**.
+
+### GSAP — pourquoi auto-hébergé (et pas CDN)
+
+Le cœur GSAP + ScrollTrigger (~46 Ko gzip) chargé en `defer` est imperceptible ; le
+vrai coût vient d'un mauvais chargement (render-blocking, layout thrashing, chargement
+partout). On applique la discipline senior : **auto-hébergé** (jamais de CDN tiers en
+front — respect de l'interdit, meilleur pour les connexions instables d'Afrique de
+l'Ouest, RGPD, reproductible dans les zips de release), **`defer` + `in_footer`**,
+**transform/opacity only**, et **chargement conditionnel** (uniquement les sites
+`expressive` ; les autres restent à 0 Ko de JS d'animation sur le socle CSS). GSAP est
+gratuit depuis fin 2024 (Webflow) ; licence non-GPL tracée dans `DECISIONS.md`
+(distribution via GitHub Releases, hors dépôt .org).
 
 Chaque jalon respecte la *Definition of Done* (lint, analyse, tests, build, budget
 perf, doc à jour) et se livre en release auto (release-please).

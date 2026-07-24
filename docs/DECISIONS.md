@@ -136,3 +136,31 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   `distance`, `stagger`, `easing-emphasized`, `duration-fast`) et surchargés dans les
   10 DA (dérivés de leur `duration`) → le mouvement devient un axe de diversité (7ᵉ
   levier, voir `docs/MOTION.md`).
+
+## V2-G2 — Moteur GSAP auto-hébergé (motion « expressive »)
+
+- **GSAP + ScrollTrigger adoptés pour la couche `expressive`** (storytelling, scroll
+  synchrone, séquences), là où le CSS natif atteint ses limites. Le socle CSS de G1
+  reste la base sur tous les sites (niveaux none/subtle/standard).
+- **Auto-hébergé, jamais en CDN** (`themes/maji-framework/assets/js/vendor/gsap/`,
+  vendoré via npm, version figée 3.15.0) : respecte l'interdit « CDN tiers en front »,
+  supprime un point de défaillance/latence sur les connexions instables d'Afrique de
+  l'Ouest, évite toute fuite d'IP client (RGPD), et fige la version dans les zips de
+  release (fleet update reproductible). **Aucun interdit du framework n'est modifié** —
+  GSAP n'est pas jQuery et n'est pas servi depuis un CDN.
+- **Chargement conditionnel + `defer`** : GSAP n'est enqueue qu'au niveau
+  `design.motion = expressive`, en `defer`/`in_footer`, hors admin. Les autres niveaux
+  = 0 Ko de JS d'animation. Évite les 3 pièges classiques (render-blocking, layout
+  thrashing, chargement partout).
+- **Discipline runtime** : toutes les tweens vivent dans `gsap.matchMedia(
+  '(prefers-reduced-motion: no-preference)')` (WCAG 2.3.3) ; on n'anime que
+  `transform`/`opacity` ; `ScrollTrigger.batch` pour les révélations (une instance).
+  Garanti par `MotionEngineTest`.
+- **Licence** : GSAP est gratuit depuis fin 2024 (Webflow, club plugins inclus) mais
+  sous licence GreenSock « No Charge », **non GPL**. Acceptable ici car MAJI se
+  distribue via **GitHub Releases** (pas le dépôt WordPress.org). Notice dans
+  `assets/js/vendor/gsap/NOTICE.md`.
+- **Frontière respectée** : la validation du champ `design.motion` est côté plugin
+  (`DnaValidator`) ; l'application (body class + enqueue conditionnel) est côté thème
+  (présentation), qui lit l'option `maji_dna` en lecture seule. Rien n'est écrit dans
+  les fichiers du thème.
