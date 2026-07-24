@@ -6,6 +6,13 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 
 À partir de la 1.1.0, les entrées de version et les tags sont générés automatiquement par [release-please](https://github.com/googleapis/release-please) depuis les Conventional Commits (voir `.github/workflows/release-please.yml`). Les changements en attente apparaissent dans la « Release PR » du dépôt, pas dans une section « Unreleased ».
 
+## [1.10.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.9.0...v1.10.0) (2026-07-24)
+
+
+### Ajouté
+
+* V2-G2 — GSAP-powered expressive motion, self-hosted ([664818b](https://github.com/urbainmorel/framework_wp_maji/commit/664818bfc1b4b2c85efe513c40bd11607d657e53))
+
 ## [1.9.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.8.0...v1.9.0) (2026-07-23)
 
 
