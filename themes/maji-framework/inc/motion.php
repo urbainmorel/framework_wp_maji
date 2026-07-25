@@ -27,14 +27,23 @@ function maji_framework_motion_levels(): array {
 
 /**
  * Niveau de motion appliqué au site (défaut : subtle).
+ *
+ * Mémoïsé : l'option `maji_dna` n'est pas autoloadée, on évite de la relire à
+ * chaque appel (body_class + enqueue) au sein d'une même requête.
  */
 function maji_framework_motion_level(): string {
+	static $level = null;
+	if ( null !== $level ) {
+		return $level;
+	}
+
 	$dna   = get_option( 'maji_dna' );
-	$level = is_array( $dna ) && isset( $dna['design']['motion'] )
+	$value = is_array( $dna ) && isset( $dna['design']['motion'] )
 		? (string) $dna['design']['motion']
 		: 'subtle';
 
-	return in_array( $level, maji_framework_motion_levels(), true ) ? $level : 'subtle';
+	$level = in_array( $value, maji_framework_motion_levels(), true ) ? $value : 'subtle';
+	return $level;
 }
 
 /**
@@ -57,6 +66,21 @@ add_filter( 'body_class', 'maji_framework_motion_body_class' );
  */
 function maji_framework_motion_enqueue(): void {
 	if ( is_admin() || 'expressive' !== maji_framework_motion_level() ) {
+		return;
+	}
+
+	// Ne charger GSAP que sur les vues de contenu susceptibles d'être animées :
+	// accueil + contenus singuliers, en excluant la page « politique de
+	// confidentialité » (utilitaire, sans animation à piloter).
+	$privacy_id = (int) get_option( 'wp_page_for_privacy_policy' );
+	$load       = ( is_front_page() || is_singular() ) && ! ( $privacy_id > 0 && is_page( $privacy_id ) );
+
+	/**
+	 * Permet d'affiner le chargement de GSAP (ex. exclure d'autres pages).
+	 *
+	 * @param bool $load Charger GSAP sur la vue courante.
+	 */
+	if ( ! (bool) apply_filters( 'maji_framework_load_motion', $load ) ) {
 		return;
 	}
 

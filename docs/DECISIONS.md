@@ -183,3 +183,16 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   le rendu améliore aussi l'unicité anti-clones.
 - **Complète, ne remplace pas** les garde-fous automatiques (WCAG du validateur, budget
   perf, jetons) : le contrôle visuel relève le *plancher* de qualité perçue.
+
+## Correctifs post-audit (findings moyens A1/A2/G2)
+
+- **A1 — perf** : `maji_framework_motion_level()` mémoïse le niveau dans une `static`
+  (l'option `maji_dna` non-autoloadée n'est plus relue à chaque appel : 2 requêtes DB
+  par page économisées).
+- **G2 — perf** : GSAP ne se charge plus que sur l'accueil et les contenus singuliers,
+  hors page « politique de confidentialité », via un filtre `maji_framework_load_motion`
+  (plus de 46 Ko sur les pages utilitaires).
+- **A2 — robustesse marché** : la limitation d'abus des réservations clé désormais sur
+  une empreinte d'appareil (IP + User-Agent) et non l'IP seule, pour ne pas bloquer des
+  clients légitimes derrière le CGNAT mobile ; seuil filtrable (`maji_reservation_rate_limit`).
+  Le quota n'est consommé que sur une demande **valide et créée** (corrige aussi A4).

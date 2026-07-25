@@ -89,18 +89,24 @@ final class ReservationController {
 			return new \WP_REST_Response( [ 'message' => __( 'Votre demande a bien été envoyée.', 'maji-core' ) ], 201 );
 		}
 
-		// Limitation par IP.
-		$ip  = $this->client_ip();
-		$key = self::RATE_TRANSIENT . md5( $ip );
-		$hit = (int) get_transient( $key );
-		if ( $hit >= self::RATE_LIMIT ) {
+		// Limitation d'abus : clé par APPAREIL (IP + empreinte d'agent) pour ne pas
+		// pénaliser les clients légitimes partageant une même IP publique derrière
+		// le NAT opérateur (CGNAT), fréquent sur mobile en Afrique de l'Ouest.
+		/**
+		 * Nombre maximum de demandes par appareil et par fenêtre.
+		 *
+		 * @param int $limit Seuil (défaut 5).
+		 */
+		$limit = (int) apply_filters( 'maji_reservation_rate_limit', self::RATE_LIMIT );
+		$key   = self::RATE_TRANSIENT . md5( $this->rate_fingerprint() );
+		$hit   = (int) get_transient( $key );
+		if ( $hit >= $limit ) {
 			return new \WP_Error(
 				'maji_rate_limited',
 				__( 'Trop de demandes. Merci de réessayer dans une heure ou de nous contacter sur WhatsApp.', 'maji-core' ),
 				[ 'status' => 429 ]
 			);
 		}
-		set_transient( $key, $hit + 1, self::RATE_WINDOW );
 
 		$type  = (string) $request->get_param( 'type' );
 		$name  = sanitize_text_field( (string) $request->get_param( 'name' ) );
@@ -149,6 +155,10 @@ final class ReservationController {
 			return new \WP_Error( 'maji_creation_failed', __( 'Impossible d\'enregistrer la demande. Merci de réessayer.', 'maji-core' ), [ 'status' => 500 ] );
 		}
 
+		// On ne consomme le quota que sur une demande VALIDE et créée : les erreurs
+		// de saisie ne bloquent pas l'utilisateur.
+		set_transient( $key, $hit + 1, self::RATE_WINDOW );
+
 		return new \WP_REST_Response(
 			[
 				'id'      => $post_id,
@@ -159,10 +169,15 @@ final class ReservationController {
 	}
 
 	/**
-	 * Adresse IP du client (derrière proxy éventuel).
+	 * Empreinte d'appareil pour la limitation : IP + agent utilisateur.
+	 *
+	 * Combiner l'IP et le User-Agent distingue des appareils différents derrière
+	 * une même IP publique (CGNAT mobile), tout en restant anonyme (jamais stocké,
+	 * seule l'empreinte hachée sert de clé de transient).
 	 */
-	private function client_ip(): string {
+	private function rate_fingerprint(): string {
 		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '0.0.0.0';
-		return $ip;
+		$ua = isset( $_SERVER['HTTP_USER_AGENT'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) ) : '';
+		return $ip . '|' . $ua;
 	}
 }
