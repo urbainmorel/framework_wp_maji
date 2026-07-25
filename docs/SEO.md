@@ -8,9 +8,10 @@
 Faire ressortir chaque site produit dans la recherche **locale et mobile** d'Afrique
 de l'Ouest — là où un client tape « restaurant Haie Vive Cotonou » sur son téléphone
 et déclenche le **Local Pack** (les 3 fiches Google Maps en tête). On y parvient non
-pas en ajoutant du contenu, mais en **structurant le contenu déjà présent** (avis,
-FAQ, horaires, menu, chambres, adresse) pour rendre les sites **éligibles aux
-résultats enrichis** (étoiles, FAQ, fiche établissement).
+pas en ajoutant du contenu, mais en **structurant le contenu déjà présent** (FAQ,
+horaires, menu, chambres, adresse, géo) pour rendre les sites **éligibles aux
+résultats enrichis** (FAQ, fiche établissement, Local Pack). Les **étoiles d'avis**
+relèvent de la fiche Google Business Profile, pas du JSON-LD (voir §4, encart avis).
 
 ## 2. Le constat (base actuelle)
 
@@ -20,8 +21,9 @@ résultats enrichis** (étoiles, FAQ, fiche établissement).
 `servesCuisine`/`currenciesAccepted`), le tout **désactivé automatiquement** si Yoast,
 Rank Math ou SEOPress est actif.
 
-**Non exploité :** les avis, les FAQ, les coordonnées géographiques, le menu et les
-chambres — précisément les signaux qui déclenchent les résultats enrichis.
+**Non exploité :** les FAQ, les coordonnées géographiques, le menu et les
+chambres — précisément les signaux qui déclenchent les résultats enrichis. (Les avis,
+eux, ne sont **pas** balisables sur l'entité — restriction Google, voir §4.)
 
 ## 3. Principes (inchangés)
 
@@ -43,11 +45,19 @@ chambres — précisément les signaux qui déclenchent les résultats enrichis.
 | Enrichissement | Type schema.org | Source dans le framework | Gain |
 |---|---|---|---|
 | **FAQ** | `FAQPage` / `Question` / `Answer` | sections `commun-faq-01/02` (`faq_1..3`) | Accordéon FAQ dans les résultats |
-| **Avis** | `AggregateRating` + `Review` | sections `commun-avis-*` (`avis_1..3`) | **Étoiles** sous le lien (CTR ↑) |
 | **Géo** | `GeoCoordinates` + `hasMap` | **nouveau** `identity.geo` (§5) | Local Pack / Google Maps |
 | **Restaurant** | `hasMenu`, `priceRange`, `acceptsReservations`, `servesCuisine` | page menu + Woo + `facts.specialites` | Résultats restaurant enrichis |
 | **Hôtel** | `amenityFeature`, `makesOffer` (chambres), `priceRange`, `checkinTime` | CPT `maji_room` + taxonomie équipements | Fiches hôtel enrichies |
 | **Image** | `image` (JSON-LD) + `og:image:alt` | hero/média de la page | Affichage social + Discover |
+
+> **Écarté volontairement — les avis (`AggregateRating` / `Review`).** Google
+> **interdit** depuis 2019 les avis « auto-servis » : une note d'établissement
+> (`LocalBusiness` / `Hotel` / `Restaurant`) balisée à partir de témoignages que le
+> site publie lui-même n'est **pas éligible** aux étoiles et expose à une **action
+> manuelle**. Seuls des avis **vérifiables et fournis par un tiers** sont admis. Nos
+> sections `commun-avis-*` étant des témoignages rédigés côté site, on ne balise
+> **aucun** avis. L'affichage reste visuel ; l'acquisition d'étoiles passe par la
+> fiche **Google Business Profile** (Palier 3), pas par le JSON-LD.
 
 ### 🥈 Palier 2 — Technique solide
 
@@ -84,8 +94,11 @@ chambres — précisément les signaux qui déclenchent les résultats enrichis.
 ## 6. Garde-fous de qualité
 
 - **Balisage ⇄ contenu visible** : `FAQPage` émis uniquement sur les pages qui
-  contiennent réellement une section FAQ ; `AggregateRating`/`Review` uniquement quand
-  des avis sont affichés. Sinon, rien (évite les pénalités « structured data mismatch »).
+  contiennent réellement une section FAQ (questions/réponses **extraites** du contenu
+  affiché, jamais inventées). Sinon, rien (évite les pénalités « structured data mismatch »).
+- **Pas d'avis auto-servis** : aucun `AggregateRating`/`Review` sur l'entité
+  établissement — interdit par Google (voir Palier 1). Les étoiles se gagnent via la
+  fiche Google Business Profile.
 - **Un seul bloc JSON-LD par entité**, `@id` stable, pas de doublon avec WooCommerce
   (qui balise déjà les produits) ni avec un plugin SEO actif.
 - **JSON encodé** (`wp_json_encode`, `JSON_UNESCAPED_UNICODE`), échappement des sorties.
@@ -95,9 +108,10 @@ chambres — précisément les signaux qui déclenchent les résultats enrichis.
 
 ## 7. Jalons V2-H (ordre)
 
-1. **V2-H1 — Données structurées du contenu (Palier 1).** `FAQPage`, `AggregateRating`
-   + `Review`, `image`/`og:image:alt`, enrichissement `Restaurant`/`Hotel`. Garde-fou
-   « balisage = visible ». *Prérequis des suivants.*
+1. **V2-H1 — Données structurées du contenu (Palier 1).** `FAQPage` (extrait des blocs
+   `core/details`), `image`/`og:image:alt`, enrichissement `Restaurant` (`hasMenu`,
+   `acceptsReservations`) et `Hotel` (`amenityFeature`, `makesOffer`, `numberOfRooms`).
+   Garde-fou « balisage = visible ». Avis **exclus** (interdit auto-servi). *Prérequis des suivants.*
 2. **V2-H2 — Géo & fiche établissement.** Champ `identity.geo` (schéma + validateur +
    réglage), `GeoCoordinates`/`hasMap`, playbook Google Business Profile.
 3. **V2-H3 — Technique.** `BreadcrumbList`, canonical/robots, meta par page, sitemap CPT.

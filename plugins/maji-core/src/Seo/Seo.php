@@ -38,6 +38,7 @@ final class Seo {
 		}
 		add_action( 'wp_head', [ $this, 'meta_tags' ], 1 );
 		add_action( 'wp_head', [ $this, 'json_ld' ], 2 );
+		add_action( 'wp_head', [ $this, 'faq_json_ld' ], 3 );
 		add_filter( 'document_title_parts', [ $this, 'title_parts' ] );
 	}
 
@@ -88,8 +89,36 @@ final class Seo {
 		$image = $this->og_image();
 		if ( '' !== $image ) {
 			printf( '<meta property="og:image" content="%s">' . "\n", esc_url( $image ) );
+			$alt = $this->og_image_alt();
+			if ( '' !== $alt ) {
+				printf( '<meta property="og:image:alt" content="%s">' . "\n", esc_attr( $alt ) );
+			}
 		}
 		printf( '<meta name="twitter:card" content="summary_large_image">' . "\n" );
+	}
+
+	/**
+	 * JSON-LD `FAQPage` — uniquement si la page affiche réellement une FAQ.
+	 *
+	 * Les questions/réponses sont extraites du contenu visible (blocs
+	 * `core/details`) : le balisage reflète toujours l'affiché.
+	 */
+	public function faq_json_ld(): void {
+		if ( ! is_singular() ) {
+			return;
+		}
+		$post = get_post();
+		if ( null === $post || '' === $post->post_content ) {
+			return;
+		}
+		$schema = SeoSchema::faq_page( SeoSchema::faq_from_html( $post->post_content ) );
+		if ( [] === $schema ) {
+			return;
+		}
+		printf(
+			'<script type="application/ld+json">%s</script>' . "\n",
+			wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON encodé.
+		);
 	}
 
 	/**
@@ -113,11 +142,17 @@ final class Seo {
 		$schema = [
 			'@context'  => 'https://schema.org',
 			'@type'     => $type,
+			'@id'       => home_url( '/#business' ),
 			'name'      => (string) $this->settings->get( 'establishment.name', '' ),
 			'telephone' => (string) $this->settings->get( 'establishment.phone', '' ),
 			'email'     => (string) $this->settings->get( 'establishment.email', '' ),
 			'url'       => home_url( '/' ),
 		];
+
+		$image = $this->og_image();
+		if ( '' !== $image ) {
+			$schema['image'] = $image;
+		}
 
 		if ( is_array( $address ) ) {
 			$schema['address'] = [
@@ -164,9 +199,29 @@ final class Seo {
 			}
 		}
 
-		if ( 'Restaurant' === $type ) {
-			$schema['servesCuisine']      = __( 'Cuisine ouest-africaine', 'maji-core' );
-			$schema['currenciesAccepted'] = (string) $this->settings->get( 'establishment.currency', 'XOF' );
+		$currency = (string) $this->settings->get( 'establishment.currency', 'XOF' );
+
+		if ( $this->modes->is_restaurant() ) {
+			$schema['servesCuisine']       = __( 'Cuisine ouest-africaine', 'maji-core' );
+			$schema['currenciesAccepted']  = $currency;
+			$schema['acceptsReservations'] = true;
+			$menu                          = $this->find_page( [ 'menu', 'la-carte', 'carte', 'notre-carte', 'commander' ] );
+			if ( '' !== $menu ) {
+				$schema['hasMenu'] = $menu;
+			}
+		}
+
+		if ( $this->modes->is_hotel() ) {
+			$schema['acceptsReservations'] = true;
+			$features                      = $this->amenity_features();
+			if ( [] !== $features ) {
+				$schema['amenityFeature'] = $features;
+			}
+			$offers = $this->room_offers( $currency );
+			if ( [] !== $offers ) {
+				$schema['makesOffer']    = $offers;
+				$schema['numberOfRooms'] = count( $offers );
+			}
 		}
 
 		printf(
@@ -216,5 +271,85 @@ final class Seo {
 			}
 		}
 		return '';
+	}
+
+	/**
+	 * Texte alternatif de l'image Open Graph.
+	 */
+	private function og_image_alt(): string {
+		if ( is_singular() && has_post_thumbnail() ) {
+			$alt = (string) get_post_meta( (int) get_post_thumbnail_id(), '_wp_attachment_image_alt', true );
+			if ( '' !== $alt ) {
+				return $alt;
+			}
+		}
+		return (string) $this->settings->get( 'establishment.name', '' );
+	}
+
+	/**
+	 * Première page existante parmi une liste de slugs (URL, ou vide).
+	 *
+	 * @param string[] $slugs Slugs candidats.
+	 */
+	private function find_page( array $slugs ): string {
+		foreach ( $slugs as $slug ) {
+			$page = get_page_by_path( $slug );
+			if ( $page instanceof \WP_Post ) {
+				$url = get_permalink( $page );
+				if ( is_string( $url ) ) {
+					return $url;
+				}
+			}
+		}
+		return '';
+	}
+
+	/**
+	 * Équipements de l'hôtel en `LocationFeatureSpecification`.
+	 *
+	 * @return array<int, array<string, mixed>> Équipements JSON-LD.
+	 */
+	private function amenity_features(): array {
+		$terms    = get_terms(
+			[
+				'taxonomy'   => 'maji_amenity',
+				'hide_empty' => false,
+				'number'     => 20,
+			]
+		);
+		$features = [];
+		if ( is_array( $terms ) ) {
+			foreach ( $terms as $term ) {
+				if ( $term instanceof \WP_Term ) {
+					$features[] = SeoSchema::amenity_feature( $term->name );
+				}
+			}
+		}
+		return $features;
+	}
+
+	/**
+	 * Chambres publiées en `Offer` (10 max).
+	 *
+	 * @param string $currency Devise ISO 4217.
+	 * @return array<int, array<string, mixed>> Offres JSON-LD.
+	 */
+	private function room_offers( string $currency ): array {
+		if ( ! post_type_exists( \MAJI\Core\Hotel\Rooms::POST_TYPE ) ) {
+			return [];
+		}
+		$rooms  = get_posts(
+			[
+				'post_type'   => \MAJI\Core\Hotel\Rooms::POST_TYPE,
+				'numberposts' => 10,
+				'post_status' => 'publish',
+			]
+		);
+		$offers = [];
+		foreach ( $rooms as $room ) {
+			$price    = (int) get_post_meta( $room->ID, 'price_from', true );
+			$offers[] = SeoSchema::room_offer( (string) get_the_title( $room ), $price, $currency );
+		}
+		return $offers;
 	}
 }

@@ -196,3 +196,17 @@ Décisions prises par l'agent lors de l'implémentation (STI §0.3 : ambiguïté
   une empreinte d'appareil (IP + User-Agent) et non l'IP seule, pour ne pas bloquer des
   clients légitimes derrière le CGNAT mobile ; seuil filtrable (`maji_reservation_rate_limit`).
   Le quota n'est consommé que sur une demande **valide et créée** (corrige aussi A4).
+
+## V2-H1 — Données structurées Palier 1
+
+- **Avis auto-servis exclus du JSON-LD** : Google interdit (depuis 2019) le balisage
+  `AggregateRating`/`Review` sur l'entité d'un établissement à partir de témoignages que
+  le site publie sur lui-même (non éligible aux étoiles, risque d'action manuelle). Nos
+  sections `commun-avis-*` étant de ce type, on ne balise aucun avis ; les étoiles se
+  gagnent via la fiche Google Business Profile (Palier 3). Cadrage `docs/SEO.md` §4 mis à jour.
+- **Extraction FAQ depuis le contenu réel** : `FAQPage` est construit en lisant les blocs
+  `core/details` du `post_content` (classe pure `SeoSchema`, testable, sans dépendance
+  WordPress) — le balisage reflète toujours l'affiché, jamais de Q/R inventée.
+- **`SeoSchema` sans WordPress** : fragments JSON-LD (FAQ, offre chambre, équipement) en
+  logique pure pour rester couverts par PHPUnit ; `strip_tags` natif (phpcs:ignore ciblé)
+  au lieu de `wp_strip_all_tags`, et normalisation des espaces (dont insécables U+00A0).

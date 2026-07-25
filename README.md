@@ -61,7 +61,7 @@ npm run lint:js        # ESLint @wordpress
 - [Décisions](docs/DECISIONS.md) — journal des décisions d'implémentation
 - [Diversité (cadrage V2)](docs/DIVERSITE.md) — 6 leviers, maximums de DA/heros/sections, empreinte anti-clones enrichie pour 1000+ sites distincts
 - [Motion premium (cadrage V2-G)](docs/MOTION.md) — animations natives (zéro dépendance), niveaux, tokens, garde-fous accessibilité/performance
-- [SEO enrichi (cadrage V2-H)](docs/SEO.md) — données structurées depuis le contenu existant (FAQ, avis, géo, menu/chambres), local SEO, garde-fous
+- [SEO enrichi (cadrage V2-H)](docs/SEO.md) — données structurées depuis le contenu existant (FAQ, géo, menu/chambres), local SEO, garde-fous
 
 ## Licence
 
