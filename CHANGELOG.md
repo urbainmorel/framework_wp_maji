@@ -6,6 +6,23 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le pr
 
 À partir de la 1.1.0, les entrées de version et les tags sont générés automatiquement par [release-please](https://github.com/googleapis/release-please) depuis les Conventional Commits (voir `.github/workflows/release-please.yml`). Les changements en attente apparaissent dans la « Release PR » du dépôt, pas dans une section « Unreleased ».
 
+## [1.12.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.11.0...v1.12.0) (2026-07-25)
+
+
+### Ajouté
+
+* V2-H1 — structured data from existing content (FAQ, entity enrichment) ([289d090](https://github.com/urbainmorel/framework_wp_maji/commit/289d09065f251ffc9fa164f397d28f2618aef14f))
+
+
+### Corrigé
+
+* address medium audit findings (motion perf, rate-limit under CGNAT) ([c5390ea](https://github.com/urbainmorel/framework_wp_maji/commit/c5390ea1c15ff87f16c9622fc6768705f0ee84aa))
+
+
+### Documentation
+
+* add SEO.md — V2-H scoping note (structured data, local SEO) ([6636cc4](https://github.com/urbainmorel/framework_wp_maji/commit/6636cc41570153e3dada354b681039c0dea12429))
+
 ## [1.11.0](https://github.com/urbainmorel/framework_wp_maji/compare/v1.10.0...v1.11.0) (2026-07-24)
 
 
